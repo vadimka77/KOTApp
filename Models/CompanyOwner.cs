@@ -13,7 +13,7 @@ namespace KOTApp.Models
 
         [Phone]
         [Display(Name ="Phone")]
-        public int? OwnerPhone { get; set; }
+        public string? OwnerPhone { get; set; }
 
         [Required]
         [EmailAddress]

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
@@ -27,7 +28,7 @@ namespace KOTApp.Models
 
         [Required]
         [Display(Name = "Employee Commission %")]
-        [Column(TypeName = "money")]
+        [Precision(10, 2)]
         public decimal EmpCommPercent { get; set; }
 
         public ICollection<TxEntry> txEntries { get; set; }

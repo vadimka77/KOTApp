@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
@@ -12,7 +13,7 @@ namespace KOTApp.Models
         public int PayTFId { get; set; }
         public PayTimeFrame PayTimeFrame { get; set; }
 
-        [Column(TypeName = "money")]
+        [Precision(10, 2)]
         public decimal TFCommPercent { get; set; }  
 
     }
