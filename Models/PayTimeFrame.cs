@@ -6,8 +6,8 @@ namespace KOTApp.Models
     {
         [Key]
         public int PayTFId { get; set; } 
-        public string TFDisplayName { get; set; }
 
+        public string TFDisplayName { get; set; }
         public DateTime TFStart { get; set; }
         public DateTime TFEnd { get; set; }
     }

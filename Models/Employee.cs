@@ -27,6 +27,7 @@ namespace KOTApp.Models
 
         [Required]
         [Display(Name = "Employee Commission %")]
+        [Column(TypeName = "money")]
         public decimal EmpCommPercent { get; set; }
 
         public ICollection<TxEntry> txEntries { get; set; }
