@@ -11,6 +11,8 @@ namespace KOTApp.Models
         public int CompanyId { get; set; }
         public Company Company { get; set; }
 
+        public string ContractName { get; set; }
+
         [Required]
         [DataType(DataType.DateTime)]
         [Display(Name ="Contract Date")] 

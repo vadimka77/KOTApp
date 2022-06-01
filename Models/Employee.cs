@@ -10,6 +10,9 @@ namespace KOTApp.Models
 
         public int CompanyId { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         [Required]
         [Display(Name ="Hired Date")]
         public DateTime HiredDate { get; set; }
@@ -21,6 +24,10 @@ namespace KOTApp.Models
         [Column(TypeName = "money")]
         [Display(Name ="Draw Amount")]
         public decimal DrawAmount { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Commission %")]
+        public decimal EmpCommPercent { get; set; }
 
         public ICollection<TxEntry> txEntries { get; set; }
 

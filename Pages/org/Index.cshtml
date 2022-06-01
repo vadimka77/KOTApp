@@ -29,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Company[0].CurrentTFEnd)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].OwnerId)
+                @Html.DisplayNameFor(model => model.Company[0].CompanyOwnerId)
             </th>
             <th></th>
         </tr>
@@ -53,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.CurrentTFEnd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OwnerId)
+                @Html.DisplayFor(modelItem => item.CompanyOwnerId)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |

@@ -31,7 +31,7 @@ namespace KOTApp.Models
         ICollection<Contract> Contracts { get; set; }
         ICollection<Employee> Employees { get; set; }
 
-        public int OwnerId { get; set; }
+        public int CompanyOwnerId { get; set; }
         public CompanyOwner CompanyOwner { get; set; }
     }
 }
