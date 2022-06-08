@@ -42,6 +42,12 @@ namespace KOTApp.Pages.org.emp
 
             return Redirect($"./Index?oid={Request.Query["oid"]}&cid={Request.Query["cid"]}");
         }
-
+        public IActionResult OnPostFire(Employee emp)
+        {
+            Employee employee = _context.Employees.Find(emp.EmployeeID);
+            employee.TermDate = DateTime.Now;
+            _context.SaveChanges();
+            return Redirect($"./Index?cid={Request.Query["cid"]}");
+        }
     }
 }

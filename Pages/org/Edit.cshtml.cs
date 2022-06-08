@@ -75,7 +75,7 @@ namespace KOTApp.Pages.org
 
         private bool CompanyExists(int id)
         {
-          return (_context.Companies?.Any(e => e.CompanyId == id)).GetValueOrDefault();
+            return (_context.Companies?.Any(e => e.CompanyId == id)).GetValueOrDefault();
         }
     }
 }
