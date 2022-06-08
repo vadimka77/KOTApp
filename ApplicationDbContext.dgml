@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Company" Category="EntityType" Annotations="Relational:TableName: Companies RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="919.108306312561,639.600085532055,368.833333333333,253.84" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Company" Name="Company" />
+    <Node Id="Company.CompanyAddress" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1071.35830631256,735.560085532055,113.063333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyAddress" MaxLength="None" Name="CompanyAddress" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Company.CompanyId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="939.108306312561,679.600085532055,80.8133333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyId" MaxLength="None" Name="CompanyId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Company.CompanyName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="939.108306312561,735.560085532055,102.25,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyName" MaxLength="None" Name="CompanyName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Company.CompanyOwner" Category="Navigation Property" Bounds="1084.88163964589,791.520085532055,122.51,25.96" Dependent="" Field="" Inverse="" Label="CompanyOwner (1)" Name="CompanyOwner" Principal="CompanyOwner" PropertyAccessMode="PropertyAccessMode.Default" Type="CompanyOwner" />
+    <Node Id="Company.CompanyOwnerId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="939.108306312561,791.520085532055,115.773333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyOwnerId" MaxLength="None" Name="CompanyOwnerId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Company.CurrentTFEnd" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1049.92163964589,679.600085532055,91.7733333333335,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CurrentTFEnd" MaxLength="None" Name="CurrentTFEnd" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Company.CurrentTFStart" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1171.69497297923,679.600085532055,96.2466666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CurrentTFStart" MaxLength="None" Name="CurrentTFStart" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Company.PaymentTimeFrame" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="939.108306312561,847.480085532055,124.253333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PaymentTimeFrame" MaxLength="None" Name="PaymentTimeFrame" PropertyAccessMode="PropertyAccessMode.Default" Type="WorkTimeFrame" ValueGenerated="None" />
+    <Node Id="CompanyOwner" Category="EntityType" Annotations="Relational:TableName: CompanyOwners RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="980.913306312561,939.400085532055,245.223333333333,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="CompanyOwner" Name="CompanyOwner" />
+    <Node Id="CompanyOwner.CompanyOwnerId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1000.91330631256,1091.32008553206,115.773333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyOwnerId" MaxLength="None" Name="CompanyOwnerId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="CompanyOwner.Email" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1000.91330631256,979.400085532055,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Email" MaxLength="None" Name="Email" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="CompanyOwner.OwnerName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1000.91330631256,1035.36008553206,86.6566666666668,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="OwnerName" MaxLength="None" Name="OwnerName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="CompanyOwner.OwnerPhone" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1117.56997297923,1035.36008553206,88.5666666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="OwnerPhone" MaxLength="None" Name="OwnerPhone" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="CompanyOwner.Password" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1080.91330631256,979.400085532055,69.5466666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Password" MaxLength="None" Name="Password" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Contract" Category="EntityType" Annotations="Relational:TableName: Contracts RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="618.093306312561,367.780085532055,274.863333333333,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Contract" Name="Contract" />
+    <Node Id="Contract.Company" Category="Navigation Property" Bounds="638.093306312561,463.740085532055,87.55,25.96" Dependent="" Field="" Inverse="" Label="Company (1)" Name="Company" Principal="Company" PropertyAccessMode="PropertyAccessMode.Default" Type="Company" />
+    <Node Id="Contract.CompanyId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="743.559972979228,407.780085532055,80.8133333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyId" MaxLength="None" Name="CompanyId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Contract.ContractAmount" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: money" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="764.996639645894,519.700085532055,107.96,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="ContractAmount" MaxLength="None" Name="ContractAmount" PropertyAccessMode="PropertyAccessMode.Default" Type="decimal" ValueGenerated="None" />
+    <Node Id="Contract.ContractDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="755.643306312561,463.740085532055,90.0700000000001,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="ContractDate" MaxLength="None" Name="ContractDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Contract.ContractId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="638.093306312561,407.780085532055,75.4666666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="ContractId" MaxLength="None" Name="ContractId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Contract.ContractName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="638.093306312561,519.700085532055,96.9033333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="ContractName" MaxLength="None" Name="ContractName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Employee" Category="EntityType" Annotations="Relational:TableName: Employees RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="923.008306312561,339.800085532055,361.033333333333,253.84" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Employee" Name="Employee" />
+    <Node Id="Employee.Company" Category="Navigation Property" Bounds="1056.37163964589,491.720085532055,87.55,25.96" Dependent="" Field="" Inverse="" Label="Company (1)" Name="Company" Principal="Company" PropertyAccessMode="PropertyAccessMode.Default" Type="Company" />
+    <Node Id="Employee.CompanyId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1157.29497297923,435.760085532055,80.8133333333335,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CompanyId" MaxLength="None" Name="CompanyId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Employee.DrawAmount" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: money" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1173.92163964589,491.720085532055,90.1199999999999,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="DrawAmount" MaxLength="None" Name="DrawAmount" PropertyAccessMode="PropertyAccessMode.Default" Type="decimal" ValueGenerated="None" />
+    <Node Id="Employee.EmpCommPercent" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10 Scale: 2" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="943.008306312561,547.680085532055,117.996666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EmpCommPercent" MaxLength="None" Name="EmpCommPercent" PropertyAccessMode="PropertyAccessMode.Default" Type="decimal" ValueGenerated="None" />
+    <Node Id="Employee.EmployeeID" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="943.008306312561,491.720085532055,83.3633333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EmployeeID" MaxLength="None" Name="EmployeeID" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Employee.FirstName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1146.38830631256,379.800085532055,73.7966666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="FirstName" MaxLength="None" Name="FirstName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Employee.HiredDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="943.008306312561,435.760085532055,73.8066666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="HiredDate" MaxLength="None" Name="HiredDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Employee.LastName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1043.77497297923,379.800085532055,72.6133333333332,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LastName" MaxLength="None" Name="LastName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Employee.TermDate" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="943.008306312561,379.800085532055,70.7666666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="TermDate" MaxLength="None" Name="TermDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime?" ValueGenerated="None" />
+    <Node Id="Employee.txEntries" Category="Navigation Collection" Bounds="1046.81497297923,435.760085532055,80.48,25.96" Dependent="TxEntry" Field="" Inverse="Employee" Label="txEntries (*)" Name="txEntries" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;TxEntry&gt;" />
+    <Node Id="EmployeePayRate" Category="EntityType" Annotations="Relational:TableName: EmployeePayRates RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="1269.92830631256,67.9800855320548,321.193333333333,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="EmployeePayRate" Name="EmployeePayRate" />
+    <Node Id="EmployeePayRate.Employee" Category="Navigation Property" Bounds="1289.92830631256,163.940085532055,88.7533333333333,25.96" Dependent="" Field="" Inverse="" Label="Employee (1)" Name="Employee" Principal="Employee" PropertyAccessMode="PropertyAccessMode.Default" Type="Employee" />
+    <Node Id="EmployeePayRate.EmployeeId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1380.55830631256,107.980085532055,82.0166666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EmployeeId" MaxLength="None" Name="EmployeeId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="EmployeePayRate.PayTFId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1289.92830631256,107.980085532055,60.6300000000001,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PayTFId" MaxLength="None" Name="PayTFId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="EmployeePayRate.PayTimeFrame" Category="Navigation Property" Bounds="1289.92830631256,219.900085532055,113.78,25.96" Dependent="" Field="" Inverse="" Label="PayTimeFrame (1)" Name="PayTimeFrame" Principal="PayTimeFrame" PropertyAccessMode="PropertyAccessMode.Default" Type="PayTimeFrame" />
+    <Node Id="EmployeePayRate.PayTimeFramePayTFId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1433.70830631256,219.900085532055,137.413333333333,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="True" IsUnicode="True" Label="PayTimeFramePayTFId" MaxLength="None" Name="PayTimeFramePayTFId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="EmployeePayRate.TFCommPercent" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10 Scale: 2" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1408.68163964589,163.940085532055,106.683333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TFCommPercent" MaxLength="None" Name="TFCommPercent" PropertyAccessMode="PropertyAccessMode.Default" Type="decimal" ValueGenerated="None" />
+    <Node Id="IModel" Category="Model" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]] Relational:MaxIdentifierLength: 128 RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]] SqlServer:ValueGenerationStrategy: IdentityColumn" Bounds="598.093306312561,8.5532054754367E-05,1013.02833333333,1157.28" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" Label="ApplicationDbContext" ProductVersion="6.0.5" PropertyAccessMode="PropertyAccessMode.Default" />
+    <Node Id="PayTimeFrame" Category="EntityType" Annotations="Relational:TableName: PayTimeFrames RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="1314.14497297923,395.760085532055,232.76,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="PayTimeFrame" Name="PayTimeFrame" />
+    <Node Id="PayTimeFrame.PayTFId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1334.14497297923,491.720085532055,60.6300000000001,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PayTFId" MaxLength="None" Name="PayTFId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="PayTimeFrame.TFDisplayName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1424.77497297923,491.720085532055,102.13,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TFDisplayName" MaxLength="None" Name="TFDisplayName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="PayTimeFrame.TFEnd" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1334.14497297923,435.760085532055,52.0733333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TFEnd" MaxLength="None" Name="TFEnd" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="PayTimeFrame.TFStart" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1416.21830631256,435.760085532055,56.5466666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TFStart" MaxLength="None" Name="TFStart" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="TxEntry" Category="EntityType" Annotations="Relational:TableName: TxEntries RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="935.243306312561,40.0000855320548,304.563333333333,253.84" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="TxEntry" Name="TxEntry" />
+    <Node Id="TxEntry.Contract" Category="Navigation Property" Bounds="1067.25997297923,191.920085532055,82.2033333333334,25.96" Dependent="" Field="" Inverse="" Label="Contract (1)" Name="Contract" Principal="Contract" PropertyAccessMode="PropertyAccessMode.Default" Type="Contract" />
+    <Node Id="TxEntry.ContractId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1144.33997297923,135.960085532055,75.4666666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="ContractId" MaxLength="None" Name="ContractId" PropertyAccessMode="PropertyAccessMode.Default" Type="int?" ValueGenerated="None" />
+    <Node Id="TxEntry.Descr" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1035.24330631256,80.0000855320548,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Descr" MaxLength="None" Name="Descr" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TxEntry.Employee" Category="Navigation Property" Bounds="955.243306312561,247.880085532055,88.7533333333332,25.96" Dependent="" Field="" Inverse="txEntries" Label="Employee (1)" Name="Employee" Principal="Employee" PropertyAccessMode="PropertyAccessMode.Default" Type="Employee" />
+    <Node Id="TxEntry.EmployeeId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="955.243306312561,191.920085532055,82.0166666666665,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EmployeeId" MaxLength="None" Name="EmployeeId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="TxEntry.TxAmount" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: money" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1040.84663964589,135.960085532055,73.4933333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TxAmount" MaxLength="None" Name="TxAmount" PropertyAccessMode="PropertyAccessMode.Default" Type="decimal" ValueGenerated="None" />
+    <Node Id="TxEntry.TxDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="955.243306312561,135.960085532055,55.6033333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TxDate" MaxLength="None" Name="TxDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="TxEntry.TxId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="955.243306312561,80.0000855320548,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TxId" MaxLength="None" Name="TxId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="TxEntry.TxType" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1115.24330631256,80.0000855320548,55.5033333333331,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TxType" MaxLength="None" Name="TxType" PropertyAccessMode="PropertyAccessMode.Default" Type="TxType" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+    <Link Source="Company" Target="Company.CompanyAddress" Category="Contains" />
+    <Link Source="Company" Target="Company.CompanyId" Category="Contains" />
+    <Link Source="Company" Target="Company.CompanyName" Category="Contains" />
+    <Link Source="Company" Target="Company.CompanyOwner" Category="Contains" />
+    <Link Source="Company" Target="Company.CompanyOwnerId" Category="Contains" />
+    <Link Source="Company" Target="Company.CurrentTFEnd" Category="Contains" />
+    <Link Source="Company" Target="Company.CurrentTFStart" Category="Contains" />
+    <Link Source="Company" Target="Company.PaymentTimeFrame" Category="Contains" />
+    <Link Source="Company" Target="CompanyOwner" Category="Foreign Key" Annotations="" Bounds="1103.52502441406,893.440063476563,0,36.9600219726563" From="Company.CompanyOwnerId" IsUnique="False" Label="1:*" LabelBounds="1302.04870858318,908.440085532734,14.0733333333333,15.96" Name="Company -&gt; CompanyOwner" To="CompanyOwner.CompanyOwnerId" />
+    <Link Source="CompanyOwner" Target="CompanyOwner.CompanyOwnerId" Category="Contains" />
+    <Link Source="CompanyOwner" Target="CompanyOwner.Email" Category="Contains" />
+    <Link Source="CompanyOwner" Target="CompanyOwner.OwnerName" Category="Contains" />
+    <Link Source="CompanyOwner" Target="CompanyOwner.OwnerPhone" Category="Contains" />
+    <Link Source="CompanyOwner" Target="CompanyOwner.Password" Category="Contains" />
+    <Link Source="Contract" Target="Company" Category="Foreign Key" Annotations="" Bounds="870.371948242188,565.660095214844,79.0089721679688,68.0657958984375" From="Contract.CompanyId" IsUnique="False" Label="1:*" LabelBounds="1142.12204191652,608.640085532734,14.0733333333333,15.96" Name="Contract -&gt; Company" To="Company.CompanyId" />
+    <Link Source="Contract" Target="Contract.Company" Category="Contains" />
+    <Link Source="Contract" Target="Contract.CompanyId" Category="Contains" />
+    <Link Source="Contract" Target="Contract.ContractAmount" Category="Contains" />
+    <Link Source="Contract" Target="Contract.ContractDate" Category="Contains" />
+    <Link Source="Contract" Target="Contract.ContractId" Category="Contains" />
+    <Link Source="Contract" Target="Contract.ContractName" Category="Contains" />
+    <Link Source="Employee" Target="Company" Category="Foreign Key" Annotations="" Bounds="1103.52502441406,593.640075683594,0,36.9600219726563" From="Employee.CompanyId" IsUnique="False" Label="1:*" LabelBounds="1302.04870858318,608.640085532734,14.0733333333333,15.96" Name="Employee -&gt; Company" To="Company.CompanyId" />
+    <Link Source="Employee" Target="Employee.Company" Category="Contains" />
+    <Link Source="Employee" Target="Employee.CompanyId" Category="Contains" />
+    <Link Source="Employee" Target="Employee.DrawAmount" Category="Contains" />
+    <Link Source="Employee" Target="Employee.EmpCommPercent" Category="Contains" />
+    <Link Source="Employee" Target="Employee.EmployeeID" Category="Contains" />
+    <Link Source="Employee" Target="Employee.FirstName" Category="Contains" />
+    <Link Source="Employee" Target="Employee.HiredDate" Category="Contains" />
+    <Link Source="Employee" Target="Employee.LastName" Category="Contains" />
+    <Link Source="Employee" Target="Employee.TermDate" Category="Contains" />
+    <Link Source="Employee" Target="Employee.txEntries" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="Employee" Category="Foreign Key" Annotations="" Bounds="1248.59399414063,265.860076904297,74.014404296875,67.8579406738281" From="EmployeePayRate.EmployeeId" IsUnique="False" Label="1:*" LabelBounds="1479.62204191652,308.840085532734,14.0733333333333,15.96" Name="EmployeePayRate -&gt; Employee" To="Employee.EmployeeID" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.Employee" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.EmployeeId" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.PayTFId" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.PayTimeFrame" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.PayTimeFramePayTFId" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="EmployeePayRate.TFCommPercent" Category="Contains" />
+    <Link Source="EmployeePayRate" Target="PayTimeFrame" Category="Foreign Key" Annotations="" Bounds="1430.52502441406,265.860076904297,0,120.899993896484" From="EmployeePayRate.PayTimeFramePayTFId" IsUnique="False" Label="1:*" LabelBounds="1629.04870858318,308.840085532734,14.0733333333335,15.96" Name="EmployeePayRate -&gt; PayTimeFrame" To="PayTimeFrame.PayTFId" />
+    <Link Source="IModel" Target="Company" Category="Contains" />
+    <Link Source="IModel" Target="CompanyOwner" Category="Contains" />
+    <Link Source="IModel" Target="Contract" Category="Contains" />
+    <Link Source="IModel" Target="Employee" Category="Contains" />
+    <Link Source="IModel" Target="EmployeePayRate" Category="Contains" />
+    <Link Source="IModel" Target="PayTimeFrame" Category="Contains" />
+    <Link Source="IModel" Target="TxEntry" Category="Contains" />
+    <Link Source="PayTimeFrame" Target="PayTimeFrame.PayTFId" Category="Contains" />
+    <Link Source="PayTimeFrame" Target="PayTimeFrame.TFDisplayName" Category="Contains" />
+    <Link Source="PayTimeFrame" Target="PayTimeFrame.TFEnd" Category="Contains" />
+    <Link Source="PayTimeFrame" Target="PayTimeFrame.TFStart" Category="Contains" />
+    <Link Source="TxEntry" Target="Contract" Category="Foreign Key" Annotations="" Bounds="871.771240234375,293.840087890625,75.201904296875,67.908203125" From="TxEntry.ContractId" IsUnique="False" Label="1:*" LabelBounds="1134.12204191652,308.840085532734,14.0733333333333,15.96" Name="TxEntry -&gt; Contract" To="Contract.ContractId" />
+    <Link Source="TxEntry" Target="Employee" Category="Foreign Key" Annotations="" Bounds="1094.29858398438,293.840087890625,1.97314453125,36.9727783203125" From="TxEntry.EmployeeId" IsUnique="False" Label="1:*" LabelBounds="1308.12204191652,308.840085532734,14.0733333333333,15.96" Name="TxEntry -&gt; Employee" To="Employee.EmployeeID" />
+    <Link Source="TxEntry" Target="TxEntry.Contract" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.ContractId" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.Descr" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.Employee" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.EmployeeId" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.TxAmount" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.TxDate" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.TxId" Category="Contains" />
+    <Link Source="TxEntry" Target="TxEntry.TxType" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Содержит" Description="Указывает, содержит ли источник связи целевой объект" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Содержится в" IsContainment="True" OutgoingActionLabel="Содержит" />
+    <Category Id="EntityType" />
+    <Category Id="Foreign Key" />
+    <Category Id="Model" />
+    <Category Id="Navigation Collection" />
+    <Category Id="Navigation Property" />
+    <Category Id="Property Foreign" />
+    <Category Id="Property Optional" />
+    <Category Id="Property Primary" />
+    <Category Id="Property Required" />
+  </Categories>
+  <Properties>
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass" Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Field" Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Группа" Description="Отображать узел как группу" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsAbstract" Label="IsAbstract" Description="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="Label" Label="Метка" Description="Отображаемая метка аннотируемого объекта" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="MaxLength" DataType="System.String" />
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type" Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>

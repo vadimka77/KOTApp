@@ -1,64 +1,65 @@
-﻿@page
-@model KOTApp.Pages.Org.IndexModel
+﻿@page 
+@model KOTApp.Pages.org.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Companies";
 }
 
-<h1>Index</h1>
+<h1>Company List</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+<a asp-page="./Edit" class="btn btn-primary" asp-route-oid="@Request.Query["oid"]" asp-route-cid="0">Add New Company</a>
+
+<form method="get">
+    <div class="input-group mt-2">
+        <input type="search" class="form-control" value="" />
+        <span class="input-group-lg">
+            <button class="btn btn-dark">Search</button>
+        </span>
+    </div>
+</form>
+
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].PaymentTimeFrame)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].CurrentTFStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].CurrentTFEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyOwnerId)
-            </th>
-            <th></th>
+            <th>Company Name</th>
+
+            <th>Company Address</th>
+
+            <th>Payment Time Frame</th>
+
+            <th>Current TF Start</th>
+
+            <th>Current TF End</th>
+
+            <th>Actions</th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Company) {
+@foreach (var item in Model.Companies) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentTimeFrame)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentTFStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentTFEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyOwnerId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
+            <td>@item.CompanyName</td>
+
+            <td>@item.CompanyAddress</td>
+
+            <td>@item.PaymentTimeFrame</td>
+
+            <td>@item.CurrentTFStart.ToShortDateString()</td>
+
+            <td>@item.CurrentTFEnd.ToShortDateString()</td>
+
+            <td style="width:auto">
+                <a asp-page="./Edit" 
+                    asp-route-oid="@item.CompanyOwnerId"
+                    asp-route-cid="@item.CompanyId" 
+                    class="btn btn-info">
+                Edit</a>
+
+                <a asp-page="./emp/Index" 
+                    asp-route-oid="@item.CompanyOwnerId" 
+                    asp-route-cid="@item.CompanyId" 
+                    class="btn btn-primary">
+                Employees</a>
             </td>
         </tr>
 }

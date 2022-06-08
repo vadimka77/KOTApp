@@ -8,23 +8,30 @@ using Microsoft.EntityFrameworkCore;
 using KOTApp.Data;
 using KOTApp.Models;
 
-namespace KOTApp.Pages.org
+namespace KOTApp.Pages.org.emp
 {
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
+        public Company Org;
+
+        public CompanyOwner OrgOwner;
 
         public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Company> Companies { get; set; }
-        public IList<Company> Company { get; set; } = default!;
+        public IList<Employee> Employee { get;set; } = default!;
 
-        public void OnGet(int oid)
+        public async Task OnGetAsync(int oid, int cid)
         {
-            Companies = _context.Companies.Where(o => o.CompanyOwnerId == oid).ToList();
+            if (_context.Employees != null)
+            {
+                Employee = await _context.Employees.Where(e => e.CompanyId == cid).ToListAsync();
+                Org = _context.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
+            }
         }
     }
 }

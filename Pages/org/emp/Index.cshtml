@@ -1,0 +1,64 @@
+﻿@page 
+@model KOTApp.Pages.org.emp.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employees of @Model.Org.CompanyName</h1>
+
+<a asp-page="Create" asp-route-cid='@Model.Org.CompanyId' class="btn btn-primary">Add New Employee</a>
+
+<form method="get">
+    <div class="input-group mt-2">
+        <input type="search" class="form-control" value="" />
+        <span class="input-group-lg">
+            <button class="btn btn-dark">Search</button>
+        </span>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+
+            <th>Last Name</th>
+
+            <th>Hired Date</th>
+
+            <th>Term Date</th>
+
+            <th>Draw Amount</th>
+
+            <th>Emp Comm Percent</th>
+
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Employee) {
+        <tr>
+            <td>@item.FirstName</td>
+
+            <td>@item.LastName</td>
+
+            <td>@item.HiredDate</td>
+
+            <td>@item.TermDate</td>
+
+            <td>@item.DrawAmount</td>
+
+            <td>@item.EmpCommPercent</td>
+
+            <td style="width:auto">
+                <a asp-page="./Edit" 
+                    asp-route-oid="@item.Company.CompanyOwnerId"
+                    asp-route-cid="@item.CompanyId"
+                    asp-route-eid="@item.EmployeeID" 
+                    
+                    class="btn btn-info">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

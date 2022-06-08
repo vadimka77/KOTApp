@@ -1,0 +1,59 @@
+﻿@page
+@model KOTApp.Pages.org.emp.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Employee of @Model.Org.CompanyName</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.EmployeeID" />
+            <input type="hidden" asp-for="Employee.CompanyId" />
+            <div class="form-group">
+                <label asp-for="Employee.FirstName" class="control-label"></label>
+                <input asp-for="Employee.FirstName" class="form-control" />
+                <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.LastName" class="control-label"></label>
+                <input asp-for="Employee.LastName" class="form-control" />
+                <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.HiredDate" class="control-label"></label>
+                <input asp-for="Employee.HiredDate" class="form-control" type="date"/>
+                <span asp-validation-for="Employee.HiredDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.TermDate" class="control-label"></label>
+                <input asp-for="Employee.TermDate" class="form-control" type="date"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.DrawAmount" class="control-label"></label>
+                <input asp-for="Employee.DrawAmount" class="form-control"/>
+                <span asp-validation-for="Employee.DrawAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.EmpCommPercent" class="control-label"></label>
+                <input asp-for="Employee.EmpCommPercent" class="form-control" />
+                <span asp-validation-for="Employee.EmpCommPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<a class="btn btn-info mt-2"
+   href='@("/org/emp/?oid=" + Request.Query["oid"] + "&cid=" + Request.Query["cid"])'>
+   back to list</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

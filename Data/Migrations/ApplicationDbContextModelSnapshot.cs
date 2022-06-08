@@ -54,7 +54,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasIndex("CompanyOwnerId");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("KOTApp.Models.CompanyOwner", b =>
@@ -82,7 +82,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasKey("CompanyOwnerId");
 
-                    b.ToTable("CompanyOwners");
+                    b.ToTable("CompanyOwners", (string)null);
                 });
 
             modelBuilder.Entity("KOTApp.Models.Contract", b =>
@@ -110,7 +110,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Contracts");
+                    b.ToTable("Contracts", (string)null);
                 });
 
             modelBuilder.Entity("KOTApp.Models.Employee", b =>
@@ -148,7 +148,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("KOTApp.Models.TxEntry", b =>
@@ -184,7 +184,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("TxEntries");
+                    b.ToTable("TxEntries", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
