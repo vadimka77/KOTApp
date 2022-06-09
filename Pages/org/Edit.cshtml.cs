@@ -23,16 +23,17 @@ namespace KOTApp.Pages.org
         [BindProperty]
         public Company Company { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int oid, int cid)
+        public async Task<IActionResult> OnGetAsync(int oid, int? cid)
         {
-            if (cid == 0)
+            if (cid == null)
             {
                 Company = new Company()
                 {
                     CompanyOwnerId = oid
                 };
+                return Page();
             }
-
+            // if cid is NOT NULL, find compnany
             var company =  await _context.Companies.FirstOrDefaultAsync(m => m.CompanyId == cid);
             if (company == null)
             {
@@ -47,30 +48,38 @@ namespace KOTApp.Pages.org
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (Company.CompanyId == 0)
+            {
+                _context.Add(Company);
+            }
+            else
+            {
+                _context.Attach(Company).State = EntityState.Modified;
+            }
+
+            await _context.SaveChangesAsync();
+            //try
             //{
-            //    return Page();
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!CompanyExists(Company.CompanyId))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
             //}
 
-            _context.Attach(Company).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CompanyExists(Company.CompanyId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
+            return Redirect($"./Index?oid={Company.CompanyOwnerId}");
         }
 
         private bool CompanyExists(int id)

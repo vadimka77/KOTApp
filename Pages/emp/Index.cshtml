@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h3>  <a asp-page="../Org/Index" asp-route-oid=@Model.Org.CompanyOwnerId class="link">My Companies</a> > @Model.Org.CompanyName</h3>
+<h2>Employees </h2>
 
-<h1>Employees of @Model.Org.CompanyName</h1>
-
-<a asp-page="Create" asp-route-cid='@Model.Org.CompanyId' class="btn btn-primary">Add New Employee</a>
+<a asp-page="Edit" asp-route-cid='@Model.Org.CompanyId' class="btn btn-primary">Add New Employee</a>
 
 <form method="get">
     <div class="input-group mt-2">
@@ -42,9 +42,9 @@
 
             <td>@item.LastName</td>
 
-            <td>@item.HiredDate</td>
+            <td>@item.HiredDate.ToShortDateString()</td>
 
-            <td>@item.TermDate</td>
+            <td>@(item.TermDate.HasValue?item.TermDate.Value.ToShortDateString():"")</td>
 
             <td>@item.DrawAmount</td>
 

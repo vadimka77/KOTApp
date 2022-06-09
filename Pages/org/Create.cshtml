@@ -39,7 +39,7 @@
                 <span asp-validation-for="Company.CurrentTFEnd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Company.CompanyOwnerId" type="hidden" value="@Request.Query["oid"]"></input>
+                <input asp-for="Company.CompanyOwnerId" type="hidden" value="@Request.Query["oid"]" />
             </div>
             <br />
             <div class="form-group">

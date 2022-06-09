@@ -50,6 +50,6 @@ namespace KOTApp.Models
         ICollection<Employee> Employees { get; set; }
 
         public int CompanyOwnerId { get; set; }
-        public CompanyOwner CompanyOwner { get; set; }
+        public CompanyOwner? CompanyOwner { get; set; }
     }
 }

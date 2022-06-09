@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label asp-for="Employee.DrawAmount" class="control-label"></label>
                 <input asp-for="Employee.DrawAmount" class="form-control"/>
-                <span asp-validation-for="Employee.DrawAmount" class="text-danger"></span>
+                <span asp-validation-for="Employee.DrawAmount" class="text-danger" ></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.EmpCommPercent" class="control-label"></label>
@@ -52,7 +52,7 @@
 </div>
 
 <a class="btn btn-info mt-2"
-   href='@("/org/emp/?oid=" + Request.Query["oid"] + "&cid=" + Request.Query["cid"])'>
+   href='@("/emp/?oid=" + Request.Query["oid"] + "&cid=" + Request.Query["cid"])'>
    back to list</a>
 
 @section Scripts {

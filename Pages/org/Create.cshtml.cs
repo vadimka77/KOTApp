@@ -19,10 +19,10 @@ namespace KOTApp.Pages.org
             _context = context;
         }
 
-        public SelectList Owners { get; set; }
+        //public SelectList Owners { get; set; }
         public IActionResult OnGet()
         {
-            Owners = new SelectList(_context.CompanyOwners, "CompanyOwnerId", "OwnerName");
+            //Owners = new SelectList(_context.CompanyOwners, "CompanyOwnerId", "OwnerName");
             return Page();
         }
 

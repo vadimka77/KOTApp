@@ -11,7 +11,7 @@ namespace KOTApp.Pages.org.emp
 
         public Company Org;
 
-        public CompanyOwner OrgOwner;
+        //public CompanyOwner OrgOwner;
 
         public EditModel(Data.ApplicationDbContext context)
         {
@@ -25,19 +25,31 @@ namespace KOTApp.Pages.org.emp
         {
             Org = _context.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
 
-            OrgOwner = _context.CompanyOwners.Where(c => c.CompanyOwnerId == cid).FirstOrDefault();
-
-            var employee =  await _context.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
-
-            Employee = employee;
+            if (eid == null)
+            {
+                Employee = new Employee()
+                {
+                    CompanyId = cid,
+                    HiredDate = DateTime.Now
+                };
+                return Page();
+            }
+            // if eid is NOT NULL, find compnany
+            Employee =  await _context.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            _context.Attach(Employee).State = EntityState.Modified;
-                
+            if (Employee.EmployeeID == 0)
+            {
+                _context.Add(Employee);
+            }
+            else {
+                _context.Attach(Employee).State = EntityState.Modified;
+            }
+                            
             await _context.SaveChangesAsync();
 
             return Redirect($"./Index?oid={Request.Query["oid"]}&cid={Request.Query["cid"]}");

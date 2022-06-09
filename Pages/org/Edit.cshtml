@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @using KOTApp.Models
 @model KOTApp.Pages.org.EditModel
 
@@ -6,7 +6,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit Company</h1>
+<h1> @(@Model.Company.CompanyId==0?"Add New":"Update") Company Info</h1>
 
 <hr />
 <div class="row">
@@ -48,7 +48,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index" class="btn btn-info mt-2">Back to List</a>
+    <a asp-page="./Index" asp-route-oid=@Model.Company.CompanyOwnerId class="btn btn-info mt-2">Back to List</a>
 </div>
 
 @section Scripts {

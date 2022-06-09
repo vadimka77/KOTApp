@@ -39,7 +39,7 @@ namespace KOTApp.Pages.org.emp
             await _context.Employees.AddAsync(Employee);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index", "", fragment: $"cid={Request.Query["cid"]}");
+            return Redirect($"./Index?cid={Employee.CompanyId}");
         }
     }
 }

@@ -5,9 +5,9 @@
     ViewData["Title"] = "Companies";
 }
 
-<h1>Company List</h1>
+<h1>My Companies</h1>
 
-<a asp-page="./Edit" class="btn btn-primary" asp-route-oid="@Request.Query["oid"]" asp-route-cid="0">Add New Company</a>
+<a asp-page="Edit" asp-route-oid="@Request.Query["oid"]" class="btn btn-primary" >Add Company</a>
 
 <form method="get">
     <div class="input-group mt-2">
@@ -49,13 +49,13 @@
             <td>@item.CurrentTFEnd.ToShortDateString()</td>
 
             <td style="width:auto">
-                <a asp-page="./Edit" 
+                <a asp-page="Edit" 
                     asp-route-oid="@item.CompanyOwnerId"
                     asp-route-cid="@item.CompanyId" 
                     class="btn btn-info">
                 Edit</a>
 
-                <a asp-page="./emp/Index" 
+                <a asp-page="../emp/index"
                     asp-route-oid="@item.CompanyOwnerId" 
                     asp-route-cid="@item.CompanyId" 
                     class="btn btn-primary">
