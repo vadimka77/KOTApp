@@ -33,6 +33,8 @@ namespace KOTApp.Models
 
         public ICollection<TxEntry> txEntries { get; set; }
 
+        public ICollection<Contract> contracts { get; set; }
+
         public Company Company { get; set; }
     }
 }

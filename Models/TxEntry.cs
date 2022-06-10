@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
 {
-    public enum TxType { Draw, Commission, BalanceRecord }
+    public enum TxType { Draw, SpecialDraw, Commission, BalanceRecord }
 
     public class TxEntry
     {

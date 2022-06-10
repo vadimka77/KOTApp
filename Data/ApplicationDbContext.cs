@@ -23,7 +23,6 @@ namespace KOTApp.Data
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<TxEntry> TxEntries { get; set; }
-
         public DbSet<PayTimeFrame> PayTimeFrames { get; set; }
         public DbSet<EmployeePayRate> EmployeePayRates { get; set; }
 

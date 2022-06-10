@@ -43,13 +43,10 @@ namespace KOTApp.Pages.org.emp
         public async Task<IActionResult> OnPostAsync()
         {
             if (Employee.EmployeeID == 0)
-            {
                 _context.Add(Employee);
-            }
-            else {
+            else
                 _context.Attach(Employee).State = EntityState.Modified;
-            }
-                            
+            
             await _context.SaveChangesAsync();
 
             return Redirect($"./Index?oid={Request.Query["oid"]}&cid={Request.Query["cid"]}");
