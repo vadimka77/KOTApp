@@ -12,63 +12,71 @@ namespace KOTApp.Pages.org.emp
 {
     public class IndexModel : PageModel
     {
-        public readonly ApplicationDbContext _context;
+        public readonly ApplicationDbContext _db;
 
         public Company Org;
-
-        public CompanyOwner OrgOwner;
-
+        public IEnumerable<Employee> Employees { get; set; } = default!;
         public IndexModel(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
-
-        public IList<Employee> Employees { get; set; } = default!;
 
         public async Task OnGetAsync(int cid)
         {
-            if (_context.Employees != null)
-            {
-                Employees = await _context.Employees.Where(e => e.CompanyId == cid).ToListAsync();
-                Org = _context.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
-            }
+            Org = await _db.Companies
+                .Include(e=> e.Employees)
+                .Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
+
+            Employees =  Org.Employees;
         }
 
         public IActionResult OnPostDraw(int cid)
         {
-            Org = _context.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
-            Employees = _context.Employees.Where(e => e.CompanyId == cid && e.TermDate == null).ToList();
-            List<TxEntry> txList = _context.TxEntries.Where(t => t.TxDate > Org.CurrentTFStart && t.TxDate < Org.CurrentTFEnd).ToList();
+            Org = _db.Companies
+                .Include(e => e.Employees)
+                .Where(c => c.CompanyId == cid)
+                .FirstOrDefault();
+            
+            Employees = Org.Employees
+                .Where(e => e.CompanyId == cid && e.TermDate == null)
+                .ToList();
+
+            List<TxEntry> txList = _db.TxEntries
+                .Where(t => t.TxType == TxType.Draw && t.TxDate > Org.CurrentTFStart && t.TxDate < Org.CurrentTFEnd)
+                .ToList();
 
             foreach (var emp in Employees)
             {
-                var empDraw = txList.Where(t => t.TxType == TxType.Draw && t.EmployeeId == emp.EmployeeID).FirstOrDefault();
+                var empDraw = txList
+                    .Where(t => t.EmployeeId == emp.EmployeeID)
+                    .FirstOrDefault();
 
+                //if no transaction found AND employee has draw > 0
                 if (empDraw == null && emp.DrawAmount > 0)
                 {
                     // add New Transaction for Employee
                     TxEntry txEntry = new TxEntry
                     {
-                        TxType = TxType.Draw,
-                        Employee = emp,
-                        TxDate = DateTime.Now,
+                        TxDate = Org.CurrentTFEnd.AddSeconds(-1),
                         TxAmount = emp.DrawAmount * -1,
+                        TxType = TxType.Draw,
+                        EmployeeId = emp.EmployeeID,
                         Descr = "Draw"
                     };
-                    _context.TxEntries.Add(txEntry);
+                    _db.TxEntries.Add(txEntry);
                 }
-                if(empDraw != null && emp.DrawAmount == 0)
+                //transaction entry found update amount or delete if 0
+                if(empDraw != null )
                 {
-                    _context.TxEntries.Remove(empDraw);
+                    if (emp.DrawAmount == 0)
+                        _db.TxEntries.Remove(empDraw);
+                    else // todo: change Amount not saving
+                        empDraw.TxAmount = emp.DrawAmount * -1;
                 }
-                // todo: change Amount not saving
-                if(empDraw != null && emp.DrawAmount > 0)
-                {
-                    empDraw.TxAmount = emp.DrawAmount;
-                }
+                
             }
 
-            _context.SaveChanges();
+            _db.SaveChanges();
             return Page();
             
         }

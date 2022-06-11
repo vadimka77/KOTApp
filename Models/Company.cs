@@ -38,16 +38,18 @@ namespace KOTApp.Models
 
         [Required]
         [Display(Name ="Current Time Frame Start")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.DateTime)]
         public DateTime CurrentTFStart { get; set; }
 
         [Required]
         [Display(Name ="Current Time Frame End")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.DateTime)]
         public DateTime CurrentTFEnd { get; set; }
 
-        ICollection<Contract> Contracts { get; set; }
-        ICollection<Employee> Employees { get; set; }
+        public ICollection<Contract>? Contracts { get; set; }
+        public ICollection<Employee>? Employees { get; set; }
 
         public int CompanyOwnerId { get; set; }
         public CompanyOwner? CompanyOwner { get; set; }

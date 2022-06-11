@@ -25,6 +25,6 @@ namespace KOTApp.Models
         [Display(Name ="Password")]
         public string Password { get; set; }
 
-        ICollection<Company> Companies { get; set; }
+        public ICollection<Company>? Companies { get; set; }
     }
 }

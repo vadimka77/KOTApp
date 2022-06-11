@@ -9,7 +9,7 @@ namespace KOTApp.Models
         public int ContractId { get; set; }
 
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
 
         public string ContractName { get; set; }
 
@@ -22,5 +22,8 @@ namespace KOTApp.Models
         [Column(TypeName = "money")]
         [Display(Name ="Contract Amount")]
         public decimal ContractAmount { get; set; }
-    }
+
+        public int EmployeeID { get; set; }
+        public Employee? Employee { get; set; }
+}
 }

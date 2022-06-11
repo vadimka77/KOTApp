@@ -14,6 +14,7 @@ namespace KOTApp.Models
         public PayTimeFrame PayTimeFrame { get; set; }
 
         [Precision(10, 2)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal TFCommPercent { get; set; }  
 
     }

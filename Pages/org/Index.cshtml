@@ -2,14 +2,13 @@
 @model KOTApp.Pages.org.IndexModel
 
 @{
-    ViewData["Title"] = "Companies";
+    ViewData["Title"] = "My Companies";
 }
-
-<h1>My Companies</h1>
-
-<a asp-page="Edit" asp-route-oid="@Request.Query["oid"]" class="btn btn-primary">Add Company</a>
-
-<form method="get">
+<h3 class="text-primary">Welcome back, @Model.Owner.OwnerName</h3>
+<h1>My Companies
+    <a asp-page="Edit" asp-route-oid="@Request.Query["oid"]" class="btn  btn-sm btn-outline-primary float-md-end">Add Company</a>
+</h1>
+<form method="get" style="display:none;">
     <div class="input-group mt-2">
         <input type="search" class="form-control" value="" />
         <span class="input-group-lg">
@@ -17,8 +16,33 @@
         </span>
     </div>
 </form>
+<div class="row ">
+    @foreach (var item in Model.Companies)
+    {
+    <div class="col-sm-3">
+        <div class="card" style="width: 10rem;">
+            <div class="card-header text-primary">
+                @item.CompanyName
+            </div>
 
-<table class="table table-striped">
+            <div class="card-body text-center">
+                <img style="max-width:100px;" src="/images/company-enterprise.png" class="card-img-top" alt="company">
+                @item.CompanyAddress
+                <div class="mt-2">
+                  <a asp-page="OrgDetails" 
+                    asp-route-oid="@item.CompanyOwnerId"
+                    asp-route-cid="@item.CompanyId" 
+                        class="btn btn-primary stretched-link">Manage</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    }
+    
+</div>
+
+<table class="table table-striped visually-hidden">
     <thead>
         <tr>
             <th>Company Name</th>
@@ -52,7 +76,7 @@
                 <a asp-page="Edit" 
                     asp-route-oid="@item.CompanyOwnerId"
                     asp-route-cid="@item.CompanyId" 
-                    class="btn btn-info">
+                    class="btn btn-outline-secondary">
                 Edit</a>
 
                 <a asp-page="../emp/index"

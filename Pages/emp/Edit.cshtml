@@ -2,10 +2,25 @@
 @model KOTApp.Pages.org.emp.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Employee Info";
 }
 
-<h1>Edit Employee of @Model.Org.CompanyName</h1>
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+     >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+      @Model.Org.CompanyName</a> 
+
+   > <a href='@("/emp/index?&cid=" + Request.Query["cid"])'> Employees</a> > 
+   
+</h4>
+<h3> @(@Model.Employee.EmployeeID==0?"Add New":"Update") Employee Info</h3>
 
 <hr />
 <div class="row">
@@ -36,25 +51,25 @@
             <div class="form-group">
                 <label asp-for="Employee.DrawAmount" class="control-label"></label>
                 <input asp-for="Employee.DrawAmount" class="form-control"/>
-                <span asp-validation-for="Employee.DrawAmount" class="text-danger" ></span>
+               
             </div>
             <div class="form-group">
                 <label asp-for="Employee.EmpCommPercent" class="control-label"></label>
                 <input asp-for="Employee.EmpCommPercent" class="form-control" />
-                <span asp-validation-for="Employee.EmpCommPercent" class="text-danger"></span>
+                
             </div>
             <div class="form-group mt-2">
                 <button type="submit" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-danger" asp-page-handler="Fire">Fire</button>
+            
             </div>
         </form>
     </div>
 </div>
 
 <a class="btn btn-info mt-2"
-   href='@("/emp/?oid=" + Request.Query["oid"] + "&cid=" + Request.Query["cid"])'>
+   href='@("/emp/index?&cid=" + Request.Query["cid"])'>
    back to list</a>
-
+ @*   <button type="submit" class="btn btn-danger" asp-page-handler="Fire">Fire</button>*@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

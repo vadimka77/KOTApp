@@ -7,7 +7,7 @@ namespace KOTApp.Pages.org.emp
 {
     public class EditModel : PageModel
     {
-        private readonly Data.ApplicationDbContext _context;
+        private readonly Data.ApplicationDbContext _db;
 
         public Company Org;
 
@@ -15,7 +15,7 @@ namespace KOTApp.Pages.org.emp
 
         public EditModel(Data.ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         [BindProperty]
@@ -23,7 +23,7 @@ namespace KOTApp.Pages.org.emp
 
         public async Task<IActionResult> OnGetAsync(int? eid, int cid)
         {
-            Org = _context.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
+            Org = _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
 
             if (eid == null)
             {
@@ -34,29 +34,38 @@ namespace KOTApp.Pages.org.emp
                 };
                 return Page();
             }
-            // if eid is NOT NULL, find compnany
-            Employee =  await _context.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
+            // if eid is NOT NULL, load Employee from database
+            Employee =  await _db.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Employee.EmployeeID == 0)
-                _context.Add(Employee);
-            else
-                _context.Attach(Employee).State = EntityState.Modified;
-            
-            await _context.SaveChangesAsync();
+           
+            if (!ModelState.IsValid)
+            {
+                return Page();
 
-            return Redirect($"./Index?oid={Request.Query["oid"]}&cid={Request.Query["cid"]}");
+            }
+
+
+            if (Employee.EmployeeID == 0)
+                _db.Add(Employee);
+            else
+                _db.Attach(Employee).State = EntityState.Modified;
+            
+            await _db.SaveChangesAsync();
+
+            return Redirect($"./Index?cid={Employee.CompanyId}");
         }
         public IActionResult OnPostFire(Employee emp)
         {
-            Employee employee = _context.Employees.Find(emp.EmployeeID);
+            Employee employee = _db.Employees.Find(emp.EmployeeID);
             employee.TermDate = DateTime.Now;
-            _context.SaveChanges();
-            return Redirect($"./Index?cid={Request.Query["cid"]}");
+            _db.SaveChanges();
+
+            return Redirect($"./Index?cid={employee.CompanyId}");
         }
     }
 }

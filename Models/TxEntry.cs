@@ -26,7 +26,7 @@ namespace KOTApp.Models
         [Required]
         public string Descr { get; set; }
 
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
         public int? ContractId { get; set; }
         public Contract? Contract { get; set; }
     }

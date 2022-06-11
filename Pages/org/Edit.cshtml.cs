@@ -13,28 +13,28 @@ namespace KOTApp.Pages.org
 {
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
         public EditModel(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         [BindProperty]
         public Company Company { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int oid, int? cid)
+        public async Task<IActionResult> OnGetAsync(int? oid, int? cid)
         {
             if (cid == null)
-            {
+            {               
                 Company = new Company()
                 {
-                    CompanyOwnerId = oid
+                    CompanyOwnerId = oid.Value
                 };
                 return Page();
             }
             // if cid is NOT NULL, find compnany
-            var company =  await _context.Companies.FirstOrDefaultAsync(m => m.CompanyId == cid);
+            var company =  await _db.Companies.FirstOrDefaultAsync(m => m.CompanyId == cid);
             if (company == null)
             {
                 return NotFound();
@@ -55,14 +55,14 @@ namespace KOTApp.Pages.org
 
             if (Company.CompanyId == 0)
             {
-                _context.Add(Company);
+                _db.Add(Company);
             }
             else
             {
-                _context.Attach(Company).State = EntityState.Modified;
+                _db.Attach(Company).State = EntityState.Modified;
             }
 
-            await _context.SaveChangesAsync();
+            await _db.SaveChangesAsync();
             //try
             //{
             //    await _context.SaveChangesAsync();
@@ -79,12 +79,12 @@ namespace KOTApp.Pages.org
             //    }
             //}
 
-            return Redirect($"./Index?oid={Company.CompanyOwnerId}");
+            return Redirect($"./OrgDetails?oid={Company.CompanyOwnerId}");
         }
 
-        private bool CompanyExists(int id)
-        {
-            return (_context.Companies?.Any(e => e.CompanyId == id)).GetValueOrDefault();
-        }
+        //private bool CompanyExists(int id)
+        //{
+        //    return (_db.Companies?.Any(e => e.CompanyId == id)).GetValueOrDefault();
+        //}
     }
 }

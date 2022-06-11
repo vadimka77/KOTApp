@@ -1,0 +1,52 @@
+﻿@page
+@model KOTApp.Pages.org.OrgDetailsModel
+
+@{
+    ViewData["Title"] = "Company Details";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+}
+<a asp-page="./Index" asp-route-oid="@Model.Org?.CompanyOwnerId" >My Companies</a> > 
+<h1 class="text-primary">
+        
+    @Model.Org.CompanyName 
+    <span class="h5 text-black"> <i class="fa-solid fa-map-location"></i> @Model.Org.CompanyAddress</span>
+
+    <a asp-page="./Edit" asp-route-cid="@Model.Org?.CompanyId" class="btn btn-sm btn-outline-secondary float-end">Edit Company Info</a>
+</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <label class=" fw-bold">Payment Schedule: </label> 
+            @Html.DisplayFor(model => model.Org.PaymentTimeFrame)
+            
+        </div>
+        <div class="col-md-6">
+            <label class=" fw-bold">Current Pay Period:</label> 
+            @Html.DisplayFor(model => model.Org.CurrentTFStart) -  @Html.DisplayFor(model => model.Org.CurrentTFEnd)
+            
+        </div>
+        
+    </div>
+
+<div>
+    <div class="card" style="width: 10rem;">
+            <div class="card-header text-primary">
+                EMPLOYEES
+            </div>
+
+            <div class="card-body text-center">
+                <img style="max-width:100px;" src="/images/staff-icon-3.jpg" class="card-img-top" alt="staff">
+                
+                <div class="mt-2">
+                  <a asp-page="../emp/index"
+                    asp-route-oid="@Model.Org.CompanyOwnerId"
+                    asp-route-cid="@Model.Org.CompanyId" 
+                        class="btn btn-primary stretched-link">Manage</a>
+                </div>
+
+            </div>
+        </div>
+</div>
