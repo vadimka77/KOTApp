@@ -52,6 +52,7 @@ namespace KOTApp.Models
         public ICollection<Employee>? Employees { get; set; }
 
         public int CompanyOwnerId { get; set; }
+        public int CompanyOwnerPay { get; set; }
         public CompanyOwner? CompanyOwner { get; set; }
     }
 }

@@ -23,6 +23,10 @@ namespace KOTApp.Models
         [Display(Name ="Contract Amount")]
         public decimal ContractAmount { get; set; }
 
+        [Required]
+        [Display(Name = "Advance Percent")]
+        public int ContractAdvancePercent { get; set; }
+
         public int EmployeeID { get; set; }
         public Employee? Employee { get; set; }
 }

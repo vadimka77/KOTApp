@@ -1,0 +1,65 @@
+﻿@page
+@model KOTApp.Pages.specialDraws.EditModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h4> 
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+     >
+    <a asp-page="../Org/OrgDetails"
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId"
+       class="link">
+      @Model.Org.CompanyName</a> 
+
+   > <a href='@("/emp/index?&cid=" + Request.Query["cid"])'> Employees</a> > 
+</h4>
+<h3>Update Special Draw Info</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TrEntry.TxType" />
+            <input type="hidden" asp-for="TrEntry.TxId" />
+            <input type="hidden" asp-for="TrEntry.ContractId" />
+            <input type="hidden" asp-for="TrEntry.CompanyId" />
+            <div class="form-group">
+                <label asp-for="TrEntry.TxDate" class="control-label"></label>
+                <input asp-for="TrEntry.TxDate" type="date" class="form-control" />
+                <span asp-validation-for="TrEntry.TxDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrEntry.TxAmount" class="control-label"></label>
+                <input asp-for="TrEntry.TxAmount" class="form-control" />
+                <span asp-validation-for="TrEntry.TxAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrEntry.Descr" class="control-label"></label>
+                <input asp-for="TrEntry.Descr" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Employee</label>
+                <select asp-for="TrEntry.EmployeeId" asp-items="Model.EmpSelectList" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<a class="btn btn-info mt-2"
+   href='@("/emp/index?oid=" + Request.Query["oid"]
+                   + "&cid=" + Request.Query["cid"]
+                   + "&eid=" + Request.Query["eid"])'>
+   back to list</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

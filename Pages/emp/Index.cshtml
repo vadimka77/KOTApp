@@ -16,14 +16,29 @@
       @Model.Org.CompanyName</a> 
 
    > Employees
-    <a asp-page="Edit" asp-route-cid='@Model.Org.CompanyId' class="btn btn-sm btn-outline-primary float-end">Add New Employee</a>
+    <a asp-page="Edit" 
+       asp-route-cid='@Model.Org.CompanyId' 
+       class="btn btn-sm btn-outline-primary float-end">
+       Add New Employee</a>
 </h4>
 
 <form method="post">
     <button class="btn btn-outline-success float-end" 
         asp-page-handler="Draw" 
-        asp-route-cid="@Model.Org.CompanyId" type="submit">Post Regular Draws</button>
+        asp-route-cid="@Model.Org.CompanyId"
+        type="submit">
+    Post Regular Draws</button>
 </form>
+
+<a asp-page="../specialDraws/Index"
+   asp-route-cid="@Model.Org.CompanyId"
+   class="btn btn-outline-warning">
+Special Draws</a>
+
+<a asp-page="../contracts/Index"
+    asp-route-cid="@Model.Org.CompanyId"
+    class="btn btn-outline-danger">
+Contracts</a>
 
 <table class="table table-striped">
     <thead>
@@ -34,39 +49,39 @@
 
             <th>Hired Date</th>
 
-            <th>Term Date</th>
+            <th>Terminated Date</th>
 
             <th>Draw Amount</th>
 
-            <th>Emp Comm Percent</th>
+            <th>Employee Commision Percent</th>
 
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Employees) {
-        <tr>
-            <td>@item.FirstName</td>
+        @foreach (var item in Model.Employees) {
+            <tr>
+                <td>@item.FirstName</td>
 
-            <td>@item.LastName</td>
+                <td>@item.LastName</td>
 
-            <td>@item.HiredDate.ToShortDateString()</td>
+                <td>@item.HiredDate.ToShortDateString()</td>
 
-            <td>@(item.TermDate.HasValue?item.TermDate.Value.ToShortDateString():"")</td>
+                <td>@(item.TermDate.HasValue?item.TermDate.Value.ToShortDateString():"")</td>
 
-            <td>@item.DrawAmount</td>
+                <td>@item.DrawAmount</td>
 
-            <td>@item.EmpCommPercent</td>
+                <td>@item.EmpCommPercent</td>
 
-            <td style="width:auto">
-                <a asp-page="./Edit" 
-                    asp-route-oid="@item.Company.CompanyOwnerId"
-                    asp-route-cid="@item.CompanyId"
-                    asp-route-eid="@item.EmployeeID" 
-                    class="btn btn-outline-secondary">Edit</a>
-            </td>
-        </tr>
-}
+                <td style="width:auto">
+                    <a asp-page="./Edit" 
+                        asp-route-oid="@item.Company.CompanyOwnerId"
+                        asp-route-cid="@item.CompanyId"
+                        asp-route-eid="@item.EmployeeID" 
+                        class="btn btn-outline-secondary">
+                    Edit</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-

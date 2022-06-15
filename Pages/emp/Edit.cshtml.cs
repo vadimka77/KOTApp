@@ -11,8 +11,6 @@ namespace KOTApp.Pages.org.emp
 
         public Company Org;
 
-        //public CompanyOwner OrgOwner;
-
         public EditModel(Data.ApplicationDbContext context)
         {
             _db = context;
@@ -34,6 +32,7 @@ namespace KOTApp.Pages.org.emp
                 };
                 return Page();
             }
+
             // if eid is NOT NULL, load Employee from database
             Employee =  await _db.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
 
@@ -42,13 +41,11 @@ namespace KOTApp.Pages.org.emp
 
         public async Task<IActionResult> OnPostAsync()
         {
-           
             if (!ModelState.IsValid)
             {
                 return Page();
 
             }
-
 
             if (Employee.EmployeeID == 0)
                 _db.Add(Employee);
@@ -59,13 +56,14 @@ namespace KOTApp.Pages.org.emp
 
             return Redirect($"./Index?cid={Employee.CompanyId}");
         }
-        public IActionResult OnPostFire(Employee emp)
-        {
-            Employee employee = _db.Employees.Find(emp.EmployeeID);
-            employee.TermDate = DateTime.Now;
-            _db.SaveChanges();
 
-            return Redirect($"./Index?cid={employee.CompanyId}");
-        }
+        //public IActionResult OnPostFire(Employee emp)
+        //{
+        //    Employee employee = _db.Employees.Find(emp.EmployeeID);
+        //    employee.TermDate = DateTime.Now;
+        //    _db.SaveChanges();
+
+        //    return Redirect($"./Index?cid={employee.CompanyId}");
+        //}
     }
 }

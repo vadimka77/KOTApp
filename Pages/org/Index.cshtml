@@ -6,7 +6,10 @@
 }
 <h3 class="text-primary">Welcome back, @Model.Owner.OwnerName</h3>
 <h1>My Companies
-    <a asp-page="Edit" asp-route-oid="@Request.Query["oid"]" class="btn  btn-sm btn-outline-primary float-md-end">Add Company</a>
+    <a asp-page="Edit" 
+    asp-route-oid="@Request.Query["oid"]" 
+    class="btn  btn-sm btn-outline-primary float-md-end">
+    Add Company</a>
 </h1>
 <form method="get" style="display:none;">
     <div class="input-group mt-2">
@@ -19,25 +22,25 @@
 <div class="row ">
     @foreach (var item in Model.Companies)
     {
-    <div class="col-sm-3">
-        <div class="card" style="width: 10rem;">
-            <div class="card-header text-primary">
-                @item.CompanyName
-            </div>
-
-            <div class="card-body text-center">
-                <img style="max-width:100px;" src="/images/company-enterprise.png" class="card-img-top" alt="company">
-                @item.CompanyAddress
-                <div class="mt-2">
-                  <a asp-page="OrgDetails" 
-                    asp-route-oid="@item.CompanyOwnerId"
-                    asp-route-cid="@item.CompanyId" 
-                        class="btn btn-primary stretched-link">Manage</a>
+        <div class="col-sm-3">
+            <div class="card" style="width: 10rem;">
+                <span class="card-header text-primary">@item.CompanyName</span>
+                <div class="card-body text-center">
+                    <img style="max-width:100px;" 
+                         src="/images/company-enterprise.png" 
+                         class="card-img-top" 
+                         alt="company">
+                    <br />
+                    @item.CompanyAddress
+                    <div class="mt-2">
+                      <a asp-page="OrgDetails" 
+                       asp-route-oid="@item.CompanyOwnerId"
+                       asp-route-cid="@item.CompanyId" 
+                       class="btn btn-primary stretched-link">Manage</a>
+                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
     }
     
 </div>
@@ -60,32 +63,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Companies) {
-        <tr>
-            <td>@item.CompanyName</td>
+        @foreach (var item in Model.Companies) {
+            <tr>
+                <td>@item.CompanyName</td>
 
-            <td>@item.CompanyAddress</td>
+                <td>@item.CompanyAddress</td>
 
-            <td>@item.PaymentTimeFrame</td>
+                <td>@item.PaymentTimeFrame</td>
 
-            <td>@item.CurrentTFStart.ToShortDateString()</td>
+                <td>@item.CurrentTFStart.ToShortDateString()</td>
 
-            <td>@item.CurrentTFEnd.ToShortDateString()</td>
+                <td>@item.CurrentTFEnd.ToShortDateString()</td>
 
-            <td style="width:auto">
-                <a asp-page="Edit" 
-                    asp-route-oid="@item.CompanyOwnerId"
-                    asp-route-cid="@item.CompanyId" 
-                    class="btn btn-outline-secondary">
-                Edit</a>
+                <td style="width:auto">
+                    <a asp-page="Edit" 
+                        asp-route-oid="@item.CompanyOwnerId"
+                        asp-route-cid="@item.CompanyId" 
+                        class="btn btn-outline-secondary">
+                    Edit</a>
 
-                <a asp-page="../emp/index"
-                    asp-route-oid="@item.CompanyOwnerId" 
-                    asp-route-cid="@item.CompanyId" 
-                    class="btn btn-primary">
-                Employees</a>
-            </td>
-        </tr>
-}
+                    <a asp-page="../emp/index"
+                        asp-route-oid="@item.CompanyOwnerId" 
+                        asp-route-cid="@item.CompanyId" 
+                        class="btn btn-primary">
+                    Employees</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
 {
-    public enum TxType { Draw, SpecialDraw, Commission, BalanceRecord }
+    public enum TxType { Draw, SpecialDraw, Commission, Adjustment }
 
     public class TxEntry
     {
@@ -11,6 +11,10 @@ namespace KOTApp.Models
         public int TxId { get; set; }
 
         public int EmployeeId { get; set; }
+        public int CompanyId { get; set; }
+        public int? ContractId { get; set; }
+
+        public TxType TxType { get; set; }
 
         [Required]
         [Display(Name ="Tx Date")]
@@ -21,13 +25,12 @@ namespace KOTApp.Models
         [Display(Name ="Tx Amount")]
         public decimal TxAmount { get; set; }
 
-        public TxType TxType { get; set; }
-
         [Required]
         public string Descr { get; set; }
 
         public Employee? Employee { get; set; }
-        public int? ContractId { get; set; }
+
         public Contract? Contract { get; set; }
+
     }
 }

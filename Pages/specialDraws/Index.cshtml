@@ -1,0 +1,70 @@
+﻿@page
+@model KOTApp.Pages.specialDraws.IndexModel
+
+@{
+    ViewData["Title"] = "Special Draws";
+}
+
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+     >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+    @Model.Org.CompanyName</a> 
+     >
+    <a asp-page="../Emp/Index"
+        asp-route-oid="@Model.Org.CompanyOwnerId"
+        asp-route-cid="@Model.Org.CompanyId"
+        asp-route-eid="@Request.Query["eid"]"
+        class="link">
+    Employees</a>
+</h4>
+
+<p>
+    <a asp-page="Edit"
+        asp-route-cid="@Request.Query["cid"]"
+        class="btn btn-outline-primary">
+    Add New Special Draw</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Transaction Date</th>
+            <th>Transaction Amount</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SpecialDrawList) {
+            <tr>
+                <td>
+                    @item.Employee.FirstName @item.Employee.LastName
+                </td>
+                <td>
+                    @item.TxDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.TxAmount
+                </td>
+                <td>
+                    @item.Descr
+                </td>
+                <td>
+                    <a asp-page="Edit" 
+                        asp-route-cid="@item.CompanyId" 
+                        asp-route-tid="@item.TxId" 
+                        class="btn btn-outline-secondary">
+                    Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

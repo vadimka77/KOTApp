@@ -24,7 +24,7 @@ namespace KOTApp.Pages.org.emp
         public async Task OnGetAsync(int cid)
         {
             Org = await _db.Companies
-                .Include(e=> e.Employees)
+                .Include(e => e.Employees)
                 .Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
 
             Employees =  Org.Employees;
@@ -42,7 +42,9 @@ namespace KOTApp.Pages.org.emp
                 .ToList();
 
             List<TxEntry> txList = _db.TxEntries
-                .Where(t => t.TxType == TxType.Draw && t.TxDate > Org.CurrentTFStart && t.TxDate < Org.CurrentTFEnd)
+                .Where(t => t.TxType == TxType.Draw 
+                        && t.TxDate > Org.CurrentTFStart 
+                        && t.TxDate < Org.CurrentTFEnd)
                 .ToList();
 
             foreach (var emp in Employees)
@@ -70,7 +72,7 @@ namespace KOTApp.Pages.org.emp
                 {
                     if (emp.DrawAmount == 0)
                         _db.TxEntries.Remove(empDraw);
-                    else // todo: change Amount not saving
+                    else //todo - change Amount not saving
                         empDraw.TxAmount = emp.DrawAmount * -1;
                 }
                 
@@ -78,7 +80,6 @@ namespace KOTApp.Pages.org.emp
 
             _db.SaveChanges();
             return Page();
-            
         }
     }
 } 
