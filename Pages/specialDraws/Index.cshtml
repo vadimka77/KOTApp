@@ -20,14 +20,13 @@
     <a asp-page="../Emp/Index"
         asp-route-oid="@Model.Org.CompanyOwnerId"
         asp-route-cid="@Model.Org.CompanyId"
-        asp-route-eid="@Request.Query["eid"]"
         class="link">
     Employees</a>
 </h4>
 
 <p>
     <a asp-page="Edit"
-        asp-route-cid="@Request.Query["cid"]"
+        asp-route-cid="@Model.Org.CompanyId"
         class="btn btn-outline-primary">
     Add New Special Draw</a>
 </p>

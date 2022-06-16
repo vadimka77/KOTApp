@@ -55,9 +55,7 @@
 </div>
 
 <a class="btn btn-info mt-2"
-   href='@("/emp/index?oid=" + Request.Query["oid"]
-                   + "&cid=" + Request.Query["cid"]
-                   + "&eid=" + Request.Query["eid"])'>
+   href='@("/specialDraws/index?cid=" + @Model.Org.CompanyId)'>
    back to list</a>
 
 @section Scripts {

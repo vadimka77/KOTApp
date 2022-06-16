@@ -17,12 +17,13 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
-   > <a href='@("/emp/index?&cid=" + Request.Query["cid"])'> Employees</a> > 
+   > <a href='@("/emp/index?&cid=" + @Model.Org.CompanyId)'> Employees</a> > 
    
 </h4>
 
 <a asp-page="Edit"
-   asp-route-cid="@Request.Query["cid"]">
+   asp-route-cid="@Model.Org.CompanyId"
+   class="btn btn-outline-primary">
 Add New Contract</a>
 
 <table class="table">
@@ -52,14 +53,20 @@ Add New Contract</a>
                     @item.ContractAmount
                 </td>
                 <td>
-                    @item.Employee.LastName
+                    @item.Employee.FirstName @item.Employee.LastName
                 </td>
                 <td>
                     <a asp-page="./Edit" 
                        asp-route-cid="@item.CompanyId"
                        asp-route-jid="@item.ContractId"
-                       class="btn btn-outline-info">
+                       class="btn btn-outline-secondary">
                     Edit</a>
+                    <a asp-page="./Details" 
+                       asp-route-cid="@item.CompanyId"
+                       asp-route-eid="@item.EmployeeID"
+                       asp-route-jid="@item.ContractId"
+                       class="btn btn-outline-info">
+                    Info</a>
                 </td>
             </tr>
         }

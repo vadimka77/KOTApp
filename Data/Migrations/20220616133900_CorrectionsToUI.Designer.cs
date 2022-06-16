@@ -4,6 +4,7 @@ using KOTApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KOTApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220616133900_CorrectionsToUI")]
+    partial class CorrectionsToUI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace KOTApp.Data.Migrations
                     b.Property<int>("CompanyOwnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyOwnerPercent")
+                    b.Property<int>("CompanyOwnerPay")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CurrentTFEnd")
@@ -49,9 +51,6 @@ namespace KOTApp.Data.Migrations
 
                     b.Property<DateTime>("CurrentTFStart")
                         .HasColumnType("datetime2");
-
-                    b.Property<decimal>("EmployeeAdvancePercent")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("PaymentTimeFrame")
                         .HasColumnType("int");
@@ -99,30 +98,11 @@ namespace KOTApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractId"), 1L, 1);
 
-                    b.Property<decimal>("AdvanceAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("AdvancePercent")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("COTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("CloseDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyOwnerAmount")
+                    b.Property<int>("ContractAdvancePercent")
                         .HasColumnType("int");
-
-                    b.Property<int>("CompanyOwnerPercent")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompletionCertificate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ContractAmount")
                         .HasColumnType("money");
@@ -134,26 +114,8 @@ namespace KOTApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("EmpBalanceAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("EmpCommAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("EmpCommPercent")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("GrossProfit")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("NETSale")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ContractId");
 
@@ -561,7 +523,7 @@ namespace KOTApp.Data.Migrations
                         .HasForeignKey("ContractId");
 
                     b.HasOne("KOTApp.Models.Employee", "Employee")
-                        .WithMany("TxEntries")
+                        .WithMany("txEntries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -638,7 +600,7 @@ namespace KOTApp.Data.Migrations
                 {
                     b.Navigation("Contracts");
 
-                    b.Navigation("TxEntries");
+                    b.Navigation("txEntries");
                 });
 #pragma warning restore 612, 618
         }

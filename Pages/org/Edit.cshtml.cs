@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KOTApp.Data;
+using KOTApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using KOTApp.Data;
-using KOTApp.Models;
 
 namespace KOTApp.Pages.org
 {
@@ -26,65 +21,39 @@ namespace KOTApp.Pages.org
         public async Task<IActionResult> OnGetAsync(int? oid, int? cid)
         {
             if (cid == null)
-            {               
+            {
                 Company = new Company()
                 {
                     CompanyOwnerId = oid.Value
                 };
                 return Page();
             }
-            // if cid is NOT NULL, find compnany
-            var company =  await _db.Companies.FirstOrDefaultAsync(m => m.CompanyId == cid);
+
+            var company = await _db.Companies.FirstOrDefaultAsync(c => c.CompanyId == cid);
+
             if (company == null)
             {
                 return NotFound();
             }
             Company = company;
-           //ViewData["CompanyOwnerId"] = new SelectList(_context.CompanyOwners, "CompanyOwnerId", "Email");
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
             if (Company.CompanyId == 0)
-            {
                 _db.Add(Company);
-            }
+
             else
-            {
                 _db.Attach(Company).State = EntityState.Modified;
-            }
 
             await _db.SaveChangesAsync();
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!CompanyExists(Company.CompanyId))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            return Redirect($"./OrgDetails?oid={Company.CompanyOwnerId}");
+            
+            return Redirect($"./OrgDetails?cid={Company.CompanyId}");
         }
-
-        //private bool CompanyExists(int id)
-        //{
-        //    return (_db.Companies?.Any(e => e.CompanyId == id)).GetValueOrDefault();
-        //}
     }
 }

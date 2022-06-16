@@ -37,7 +37,7 @@ namespace KOTApp.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal EmpCommPercent { get; set; }
 
-        public ICollection<TxEntry>? txEntries { get; set; }
+        public ICollection<TxEntry>? TxEntries { get; set; }
 
         public ICollection<Contract>? Contracts { get; set; }
 

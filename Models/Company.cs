@@ -34,6 +34,9 @@ namespace KOTApp.Models
         [Display(Name ="Company Address")]
         public string CompanyAddress { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
+        public decimal EmployeeAdvancePercent { get; set; }
+
         public WorkTimeFrame PaymentTimeFrame { get; set; }
 
         [Required]
@@ -52,7 +55,10 @@ namespace KOTApp.Models
         public ICollection<Employee>? Employees { get; set; }
 
         public int CompanyOwnerId { get; set; }
-        public int CompanyOwnerPay { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
+        public decimal CompanyOwnerPercent { get; set; } 
+
         public CompanyOwner? CompanyOwner { get; set; }
     }
 }

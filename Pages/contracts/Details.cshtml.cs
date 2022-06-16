@@ -8,31 +8,39 @@ namespace KOTApp.Pages.contracts
 {
     public class DetailsModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
+
+        public Company Org;
+
+        public Employee Emp;
 
         public DetailsModel(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         public Contract Contract { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int cid, int eid, int? jid)
         {
-            if (id == null || _context.Contracts == null)
-            {
-                return NotFound();
-            }
+            Org = await _db.Companies.Include(
+                                                e => e.Employees
+                                                .Where(e => e.EmployeeID == eid)
+                                              )
+                                     .Where(c => c.CompanyId == cid)
+                                     .FirstOrDefaultAsync();
 
-            var contract = await _context.Contracts.FirstOrDefaultAsync(m => m.ContractId == id);
+            if (jid == null || _db.Contracts == null)
+            return NotFound();
+
+            var contract = await _db.Contracts.FirstOrDefaultAsync(c => c.ContractId == jid);
+
             if (contract == null)
-            {
                 return NotFound();
-            }
+
             else
-            {
                 Contract = contract;
-            }
+
             return Page();
         }
     }
