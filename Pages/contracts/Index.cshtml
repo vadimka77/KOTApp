@@ -16,12 +16,10 @@
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
       @Model.Org.CompanyName</a> 
-
-   > <a href='@("/emp/index?&cid=" + @Model.Org.CompanyId)'> Employees</a> > 
-   
+    > Contracts 
 </h4>
 
-<a asp-page="Edit"
+<a asp-page="Create"
    asp-route-cid="@Model.Org.CompanyId"
    class="btn btn-outline-primary">
 Add New Contract</a>
@@ -40,21 +38,11 @@ Add New Contract</a>
     <tbody>
         @foreach (var item in Model.ContractList) {
             <tr>
-                <td>
-                    @item.Company.CompanyName
-                </td>
-                <td>
-                    @item.ContractName
-                </td>
-                <td>
-                    @item.ContractDate.ToShortDateString()
-                </td>
-                <td>
-                    @item.ContractAmount
-                </td>
-                <td>
-                    @item.Employee.FirstName @item.Employee.LastName
-                </td>
+                <td>@item.Company.CompanyName</td>
+                <td>@item.ContractName</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.ContractAmount</td>
+                <td>@item.Employee.FirstName @item.Employee.LastName</td>
                 <td>
                     <a asp-page="./Edit" 
                        asp-route-cid="@item.CompanyId"
@@ -63,7 +51,7 @@ Add New Contract</a>
                     Edit</a>
                     <a asp-page="./Details" 
                        asp-route-cid="@item.CompanyId"
-                       asp-route-eid="@item.EmployeeID"
+                       asp-route-eid="@item.EmployeeId"
                        asp-route-jid="@item.ContractId"
                        class="btn btn-outline-info">
                     Info</a>

@@ -53,3 +53,22 @@
         </div>
     </div>
 </div>
+
+<div>
+    <div class="card" style="width: 10rem;">
+        <div class="card-header text-primary">
+            CONTRACTS
+        </div>
+
+        <div class="card-body text-center">
+            <img style="max-width:100px;" src="/images/staff-icon-3.jpg" class="card-img-top" alt="staff">
+            <div class="mt-2">
+                <a asp-page="../contracts/index"
+                asp-route-oid="@Model.Org.CompanyOwnerId"
+                asp-route-cid="@Model.Org.CompanyId" 
+                class="btn btn-primary stretched-link">
+                Manage</a>
+            </div>
+        </div>
+    </div>
+</div>

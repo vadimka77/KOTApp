@@ -1,0 +1,117 @@
+﻿@page
+@model KOTApp.Pages.contracts.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contract</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractName" class="control-label"></label>
+                <input asp-for="Contract.ContractName" class="form-control" />
+                <span asp-validation-for="Contract.ContractName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.CompletionCertificate" class="control-label"></label>
+                <input asp-for="Contract.CompletionCertificate" class="form-control" />
+                <span asp-validation-for="Contract.CompletionCertificate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractAmount" class="control-label"></label>
+                <input asp-for="Contract.ContractAmount" class="form-control" />
+                <span asp-validation-for="Contract.ContractAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.AdvancePercent" class="control-label"></label>
+                <input asp-for="Contract.AdvancePercent" class="form-control" />
+                <span asp-validation-for="Contract.AdvancePercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.AdvanceAmount" class="control-label"></label>
+                <input asp-for="Contract.AdvanceAmount" class="form-control" />
+                <span asp-validation-for="Contract.AdvanceAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.COTotal" class="control-label"></label>
+                <input asp-for="Contract.COTotal" class="form-control" />
+                <span asp-validation-for="Contract.COTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.Cost" class="control-label"></label>
+                <input asp-for="Contract.Cost" class="form-control" />
+                <span asp-validation-for="Contract.Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.NETSale" class="control-label"></label>
+                <input asp-for="Contract.NETSale" class="form-control" />
+                <span asp-validation-for="Contract.NETSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.GrossProfit" class="control-label"></label>
+                <input asp-for="Contract.GrossProfit" class="form-control" />
+                <span asp-validation-for="Contract.GrossProfit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.StartDate" class="control-label"></label>
+                <input asp-for="Contract.StartDate" class="form-control" />
+                <span asp-validation-for="Contract.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.CloseDate" class="control-label"></label>
+                <input asp-for="Contract.CloseDate" class="form-control" />
+                <span asp-validation-for="Contract.CloseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.CompanyId" class="control-label"></label>
+                <select asp-for="Contract.CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.CompanyOwnerAmount" class="control-label"></label>
+                <input asp-for="Contract.CompanyOwnerAmount" class="form-control" />
+                <span asp-validation-for="Contract.CompanyOwnerAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.CompanyOwnerPercent" class="control-label"></label>
+                <input asp-for="Contract.CompanyOwnerPercent" class="form-control" />
+                <span asp-validation-for="Contract.CompanyOwnerPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.EmployeeId" class="control-label"></label>
+                <select asp-for="Contract.EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.EmpCommAmount" class="control-label"></label>
+                <input asp-for="Contract.EmpCommAmount" class="form-control" />
+                <span asp-validation-for="Contract.EmpCommAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.EmpCommPercent" class="control-label"></label>
+                <input asp-for="Contract.EmpCommPercent" class="form-control" />
+                <span asp-validation-for="Contract.EmpCommPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.EmpBalanceAmount" class="control-label"></label>
+                <input asp-for="Contract.EmpBalanceAmount" class="form-control" />
+                <span asp-validation-for="Contract.EmpBalanceAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

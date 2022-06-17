@@ -33,10 +33,11 @@
                     <br />
                     @item.CompanyAddress
                     <div class="mt-2">
-                      <a asp-page="OrgDetails" 
-                       asp-route-oid="@item.CompanyOwnerId"
-                       asp-route-cid="@item.CompanyId" 
-                       class="btn btn-primary stretched-link">Manage</a>
+                        <a asp-page="OrgDetails" 
+                            asp-route-oid="@item.CompanyOwnerId"
+                            asp-route-cid="@item.CompanyId" 
+                            class="btn btn-primary stretched-link">
+                        Manage</a>
                     </div>
                 </div>
             </div>

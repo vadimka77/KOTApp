@@ -23,17 +23,14 @@ namespace KOTApp.Pages.contracts
 
         public async Task<IActionResult> OnGetAsync(int cid, int eid, int? jid)
         {
-            Org = await _db.Companies.Include(
-                                                e => e.Employees
-                                                .Where(e => e.EmployeeID == eid)
-                                              )
+            Org = await _db.Companies.Include(e => e.Employees) 
                                      .Where(c => c.CompanyId == cid)
                                      .FirstOrDefaultAsync();
 
             if (jid == null || _db.Contracts == null)
-            return NotFound();
+                return NotFound();
 
-            var contract = await _db.Contracts.FirstOrDefaultAsync(c => c.ContractId == jid);
+            var contract = await _db.Contracts.Include(c => c.ChangeOrders).FirstOrDefaultAsync(c => c.ContractId == jid);
 
             if (contract == null)
                 return NotFound();

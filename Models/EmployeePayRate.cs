@@ -6,16 +6,18 @@ namespace KOTApp.Models
 {
     public class EmployeePayRate
     {
-        public int EmployeeId { get; set; }
-        public Employee  Employee { get; set; }
-
         [Key]
         public int PayTFId { get; set; }
-        public PayTimeFrame PayTimeFrame { get; set; }
 
         [Precision(10, 2)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
-        public decimal TFCommPercent { get; set; }  
+        public decimal TFCommPercent { get; set; }
+
+        public int EmployeeId { get; set; }
+
+        public PayTimeFrame PayTimeFrame { get; set; }
+
+        public Employee Employee { get; set; }
 
     }
 }

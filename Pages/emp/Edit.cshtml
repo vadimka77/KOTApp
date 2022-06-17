@@ -20,14 +20,14 @@
    > <a href='@("/emp/index?&cid=" + Request.Query["cid"])'> Employees</a> > 
    
 </h4>
-<h3> @(@Model.Employee.EmployeeID==0?"Add New":"Update") Employee Info</h3>
+<h3> @(@Model.Employee.EmployeeId==0?"Add New":"Update") Employee Info</h3>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Employee.EmployeeID" />
+            <input type="hidden" asp-for="Employee.EmployeeId" />
             <input type="hidden" asp-for="Employee.CompanyId" />
             <div class="form-group">
                 <label asp-for="Employee.FirstName" class="control-label"></label>

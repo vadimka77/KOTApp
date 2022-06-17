@@ -4,6 +4,7 @@ using KOTApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KOTApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220617135419_ChangedNameOfEmployeeId")]
+    partial class ChangedNameOfEmployeeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,35 +23,6 @@ namespace KOTApp.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("KOTApp.Models.ChangeOrder", b =>
-                {
-                    b.Property<int>("ChangeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChangeId"), 1L, 1);
-
-                    b.Property<string>("ChangeOrderNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ContractId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ChangeId");
-
-                    b.HasIndex("ContractId");
-
-                    b.ToTable("ChangeOrders");
-                });
 
             modelBuilder.Entity("KOTApp.Models.Company", b =>
                 {
@@ -156,6 +129,9 @@ namespace KOTApp.Data.Migrations
                     b.Property<decimal>("ContractAmount")
                         .HasColumnType("money");
 
+                    b.Property<DateTime>("ContractDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ContractName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -180,9 +156,6 @@ namespace KOTApp.Data.Migrations
 
                     b.Property<decimal>("NETSale")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ContractId");
 
@@ -523,13 +496,6 @@ namespace KOTApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("KOTApp.Models.ChangeOrder", b =>
-                {
-                    b.HasOne("KOTApp.Models.Contract", null)
-                        .WithMany("ChangeOrders")
-                        .HasForeignKey("ContractId");
-                });
-
             modelBuilder.Entity("KOTApp.Models.Company", b =>
                 {
                     b.HasOne("KOTApp.Models.CompanyOwner", "CompanyOwner")
@@ -668,11 +634,6 @@ namespace KOTApp.Data.Migrations
             modelBuilder.Entity("KOTApp.Models.CompanyOwner", b =>
                 {
                     b.Navigation("Companies");
-                });
-
-            modelBuilder.Entity("KOTApp.Models.Contract", b =>
-                {
-                    b.Navigation("ChangeOrders");
                 });
 
             modelBuilder.Entity("KOTApp.Models.Employee", b =>

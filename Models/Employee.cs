@@ -7,13 +7,11 @@ namespace KOTApp.Models
     public class Employee
     {
         [Key] 
-        public int EmployeeID { get; set; } 
+        public int EmployeeId { get; set; }
 
-        public int CompanyId { get; set; }
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
@@ -38,8 +36,10 @@ namespace KOTApp.Models
         public decimal EmpCommPercent { get; set; }
 
         public ICollection<TxEntry>? TxEntries { get; set; }
-
         public ICollection<Contract>? Contracts { get; set; }
+
+
+        public int CompanyId { get; set; }
 
         public Company? Company { get; set; }
     }

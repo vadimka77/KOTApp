@@ -33,8 +33,7 @@ namespace KOTApp.Pages.org.emp
                 return Page();
             }
 
-            // if eid is NOT NULL, load Employee from database
-            Employee =  await _db.Employees.FirstOrDefaultAsync(m => m.EmployeeID == eid);
+            Employee =  await _db.Employees.FirstOrDefaultAsync(m => m.EmployeeId == eid);
 
             return Page();
         }
@@ -47,7 +46,7 @@ namespace KOTApp.Pages.org.emp
 
             }
 
-            if (Employee.EmployeeID == 0)
+            if (Employee.EmployeeId == 0)
                 _db.Add(Employee);
             else
                 _db.Attach(Employee).State = EntityState.Modified;
@@ -56,14 +55,5 @@ namespace KOTApp.Pages.org.emp
 
             return Redirect($"./Index?cid={Employee.CompanyId}");
         }
-
-        //public IActionResult OnPostFire(Employee emp)
-        //{
-        //    Employee employee = _db.Employees.Find(emp.EmployeeID);
-        //    employee.TermDate = DateTime.Now;
-        //    _db.SaveChanges();
-
-        //    return Redirect($"./Index?cid={employee.CompanyId}");
-        //}
     }
 }

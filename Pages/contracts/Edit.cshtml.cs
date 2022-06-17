@@ -27,15 +27,15 @@ namespace KOTApp.Pages.contracts
         {
             Org = _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
             List<Employee> EmpList = _db.Employees.Where(e => e.CompanyId == cid).ToList();
-            EmpSelectList = new SelectList(EmpList, "EmployeeID", "LastName");
+            EmpSelectList = new SelectList(EmpList, "EmployeeId", "LastName");
 
             if (jid == null)
             {
                 Job = new Contract()
                 {
                     CompanyId = Org.CompanyId,
-                    EmployeeID = EmpList.First().EmployeeID,
-                    ContractDate = DateTime.Now,
+                    EmployeeId = EmpList.First().EmployeeId,
+                    StartDate = DateTime.Now,
                     ContractAmount = 0,
                     ContractName = "",
                 };

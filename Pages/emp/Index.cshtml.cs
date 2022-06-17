@@ -50,7 +50,7 @@ namespace KOTApp.Pages.org.emp
             foreach (var emp in Employees)
             {
                 var empDraw = txList
-                    .Where(t => t.EmployeeId == emp.EmployeeID)
+                    .Where(t => t.EmployeeId == emp.EmployeeId)
                     .FirstOrDefault();
 
                 //if no transaction found AND employee has draw > 0
@@ -62,7 +62,7 @@ namespace KOTApp.Pages.org.emp
                         TxDate = Org.CurrentTFEnd.AddSeconds(-1),
                         TxAmount = emp.DrawAmount * -1,
                         TxType = TxType.Draw,
-                        EmployeeId = emp.EmployeeID,
+                        EmployeeId = emp.EmployeeId,
                         Descr = "Draw"
                     };
                     _db.TxEntries.Add(txEntry);

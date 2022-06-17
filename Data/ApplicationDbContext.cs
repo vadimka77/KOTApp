@@ -25,6 +25,7 @@ namespace KOTApp.Data
         public DbSet<TxEntry> TxEntries { get; set; }
         public DbSet<PayTimeFrame> PayTimeFrames { get; set; }
         public DbSet<EmployeePayRate> EmployeePayRates { get; set; }
+        public DbSet<KOTApp.Models.ChangeOrder>? ChangeOrders { get; set; }
 
     }
 }

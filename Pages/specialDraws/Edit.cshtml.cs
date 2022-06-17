@@ -27,7 +27,7 @@ namespace KOTApp.Pages.specialDraws
         {
             Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
             List<Employee> EmpList = _db.Employees.Where(e => e.CompanyId == cid).ToList();
-            EmpSelectList = new SelectList(EmpList, "EmployeeID", "LastName");
+            EmpSelectList = new SelectList(EmpList, "EmployeeId", "LastName");
             if (tid == null)
             {
                 TrEntry = new TxEntry()
@@ -36,7 +36,7 @@ namespace KOTApp.Pages.specialDraws
                     TxType = TxType.SpecialDraw,
                     TxDate = DateTime.Now,
                     TxAmount = 0,
-                    EmployeeId = EmpList.First().EmployeeID
+                    EmployeeId = EmpList.First().EmployeeId
                 };
             }
             else

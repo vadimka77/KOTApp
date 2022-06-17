@@ -17,36 +17,46 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
-   > <a href='@("/emp/index?&cid=" + @Model.Org.CompanyId)'>Employees</a> > 
+   > Update Contract Info
 </h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Job.ContractId" />
+            <span asp-validation-summary="ModelOnly" class="text-danger"></span>
+
             <input type="hidden" asp-for="Job.CompanyId" />
+            <input type="hidden" asp-for="Job.EmployeeId" />
+            <input type="hidden" asp-for="Job.ContractId" />
+            <input type="hidden" asp-for="Job.AdvanceAmount" />
+            <input type="hidden" asp-for="Job.CompanyOwnerAmount" />
+            <input type="hidden" asp-for="Job.ContractAmount" />
+            <input type="hidden" asp-for="Job.EmpBalanceAmount" />
+            <input type="hidden" asp-for="Job.EmpCommAmount" />
+            <input type="hidden" asp-for="Job.GrossProfit" />
+            <input type="hidden" asp-for="Job.NETSale" />
+            <input type="hidden" asp-for="Job.AdvancePercent" />
+            <input type="hidden" asp-for="Job.CompanyOwnerPercent" />
+            <input type="hidden" asp-for="Job.EmpCommPercent" />
+            <input type="hidden" asp-for="Job.StartDate" />
+
             <div class="form-group">
                 <label asp-for="Job.ContractName" class="control-label"></label>
                 <input asp-for="Job.ContractName" class="form-control" />
                 <span asp-validation-for="Job.ContractName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Job.ContractDate" class="control-label"></label>
-                <input asp-for="Job.ContractDate" class="form-control" type="date"/>
-                <span asp-validation-for="Job.ContractDate" class="text-danger"></span>
+                <label asp-for="Job.CloseDate" class="control-label"></label>
+                <input asp-for="Job.CloseDate" class="form-control" />
+                <span asp-validation-for="Job.CloseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Job.ContractAmount" class="control-label"></label>
-                <input asp-for="Job.ContractAmount" class="form-control" />
-                <span asp-validation-for="Job.ContractAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Job.EmployeeID" class="control-label"></label>
-                <select asp-for="Job.EmployeeID" class ="form-control" asp-items="Model.EmpSelectList"></select>
+                <label asp-for="Job.CompletionCertificate" class="control-label"></label>
+                <input asp-for="Job.CompletionCertificate" class="form-control" />
+                <span asp-validation-for="Job.CompletionCertificate" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
