@@ -16,6 +16,9 @@ namespace KOTApp.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
+
         [Required]
         [Display(Name ="Hired Date")]
         public DateTime HiredDate { get; set; }

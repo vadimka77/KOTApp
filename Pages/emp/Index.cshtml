@@ -38,17 +38,16 @@ Special Draws</a>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>First Name</th>
-
-            <th>Last Name</th>
-
-            <th>Hired Date</th>
-
-            <th>Terminated Date</th>
+            
+            <th>Name</th>
 
             <th>Draw Amount</th>
 
-            <th>Employee Commision Percent</th>
+            <th>Commision(%)</th>
+
+            <th>Hired</th>
+
+            <th>Left</th>
 
             <th>Actions</th>
         </tr>
@@ -56,19 +55,23 @@ Special Draws</a>
     <tbody>
         @foreach (var item in Model.Employees) {
             <tr>
-                <td>@item.FirstName</td>
-
-                <td>@item.LastName</td>
-
-                <td>@item.HiredDate.ToShortDateString()</td>
-
-                <td>@(item.TermDate.HasValue?item.TermDate.Value.ToShortDateString():"")</td>
+                <td>@item.FullName</td>
 
                 <td>@item.DrawAmount</td>
 
                 <td>@item.EmpCommPercent</td>
 
+                <td>@item.HiredDate.ToShortDateString()</td>
+
+                <td>@(item.TermDate.HasValue?item.TermDate.Value.ToShortDateString():"")</td>
                 <td style="width:auto">
+                     <a asp-page="../tx/emp" 
+                        asp-route-oid="@item.Company.CompanyOwnerId"
+                        asp-route-cid="@item.CompanyId"
+                        asp-route-eid="@item.EmployeeId" 
+                        class="btn btn-outline-primary">
+                     Transactions</a>
+
                     <a asp-page="./Edit" 
                         asp-route-oid="@item.Company.CompanyOwnerId"
                         asp-route-cid="@item.CompanyId"

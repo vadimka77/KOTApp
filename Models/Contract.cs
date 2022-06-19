@@ -21,10 +21,10 @@ namespace KOTApp.Models
         [Display(Name = "Contract Amount")]
         public decimal ContractAmount { get; set; }
 
-        [Display(Name = "Advance Percent")]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal AdvancePercent { get; set; }
 
+        [Display(Name = "Advance Amount")]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal AdvanceAmount { get; set; }
 
@@ -44,9 +44,11 @@ namespace KOTApp.Models
         [Required]
         [DataType(DataType.DateTime)]
         [Display(Name = "Contract Date")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime StartDate { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Close Date")]
         public DateTime? CloseDate { get; set; }
 

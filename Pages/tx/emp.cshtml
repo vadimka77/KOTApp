@@ -1,0 +1,81 @@
+﻿@page
+@model KOTApp.Pages.tx.empModel
+
+@{
+    ViewData["Title"] = "Employee Transactions";
+}
+<h4> 
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+     >
+    <a asp-page="../Org/OrgDetails"
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId"
+       class="link">
+      @Model.Org.CompanyName</a> 
+
+   > <a href='@("/tx/index?&cid=" + Request.Query["cid"])'> Transactions </a> > Employee 
+</h4>
+<h3>@Model.Emp.FullName </h3>
+<h4>[@Model.Org.CurrentTFStart.ToString("yyyy-MM-dd") - @Model.Org.CurrentTFStart.ToString("yyyy-MM-dd")]</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Date
+            </th>
+            <th>
+              Amount
+            </th>
+            <th>
+               Type
+            </th>
+           
+            <th>
+                Description
+            </th>
+            <th>
+               Contract
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TxList) {
+        <tr>
+             <td>
+                @item.TxDate.ToString("yyyy-MM-dd")
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.TxAmount)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.TxType)
+            </td>
+            
+            <td>
+                @item.Descr
+            </td>
+           
+            <td>
+                @item.Contract?.ContractName
+            </td>
+            <td> 
+                  
+                        @if (item.TxType == Models.TxType.SpecialDraw || item.TxType == Models.TxType.Adjustment)
+                        {
+                            <a  asp-page="../specialDraws/Edit" 
+                                asp-route-cid="@item.CompanyId" asp-route-eid="@item.EmployeeId" asp-route-tid="@item.TxId">Edit</a>
+                            
+                             <a href="#" > !!!Delete!!! </a> 
+                        }
+                    
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

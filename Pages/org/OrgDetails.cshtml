@@ -35,40 +35,88 @@
     </div>
 </div>
 
-<div>
-    <div class="card" style="width: 10rem;">
-        <div class="card-header text-primary">
-            EMPLOYEES
-        </div>
+<div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="card" style="width: 10rem;">
+                <div class="card-header text-primary">
+                    CONTRACTS
+                </div>
 
-        <div class="card-body text-center">
-            <img style="max-width:100px;" src="/images/staff-icon-3.jpg" class="card-img-top" alt="staff">
-            <div class="mt-2">
-                <a asp-page="../emp/index"
-                asp-route-oid="@Model.Org.CompanyOwnerId"
-                asp-route-cid="@Model.Org.CompanyId" 
-                class="btn btn-primary stretched-link">
-                Manage</a>
+                <div class="card-body text-center">
+                    <img style="max-width:100px;" src="/images/contract_icon_128.png" class="card-img-top" alt="contracts">
+                    <div class="mt-2">
+                        <a asp-page="../contracts/index"
+                       asp-route-oid="@Model.Org.CompanyOwnerId"
+                       asp-route-cid="@Model.Org.CompanyId"
+                       class="btn btn-primary stretched-link">
+                            Manage
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+         <div class="col-md-3 col-sm-3">
 
-<div>
-    <div class="card" style="width: 10rem;">
-        <div class="card-header text-primary">
-            CONTRACTS
-        </div>
 
-        <div class="card-body text-center">
-            <img style="max-width:100px;" src="/images/staff-icon-3.jpg" class="card-img-top" alt="staff">
-            <div class="mt-2">
-                <a asp-page="../contracts/index"
-                asp-route-oid="@Model.Org.CompanyOwnerId"
-                asp-route-cid="@Model.Org.CompanyId" 
-                class="btn btn-primary stretched-link">
-                Manage</a>
+            <div class="card" style="width: 10rem;">
+                <div class="card-header text-primary">
+                    TRANSACTIONS
+                </div>
+
+                <div class="card-body text-center">
+                    <img style="max-width:80px;" src="/images/ledger.png" class="card-img-top" alt="staff">
+                    <div class="mt-2">
+                        <a asp-page="../tx/Index"
+                           asp-route-cid="@Model.Org.CompanyId"
+                            class="btn btn-primary stretched-link">
+                            Review
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+          <div class="col-md-3 col-sm-3">
+
+
+            <div class="card" style="width: 10rem;">
+                <div class="card-header text-primary">
+                    ADJUSTMENTS
+                </div>
+
+                <div class="card-body text-center">
+                    <img style="max-width:106px;" src="/images/money_updown_98.png" class="card-img-top" alt="staff">
+                    <div class="mt-2">
+                        <a asp-page="../specialDraws/Index"
+                           asp-route-cid="@Model.Org.CompanyId"
+                            class="btn btn-primary stretched-link">
+                            Manage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+
+
+            <div class="card" style="width: 10rem;">
+                <div class="card-header text-primary">
+                    EMPLOYEES
+                </div>
+
+                <div class="card-body text-center">
+                    <img style="max-width:100px;" src="/images/staff-icon-3.jpg" class="card-img-top" alt="staff">
+                    <div class="mt-2">
+                        <a asp-page="../emp/index"
+                       asp-route-oid="@Model.Org.CompanyOwnerId"
+                       asp-route-cid="@Model.Org.CompanyId"
+                       class="btn btn-primary stretched-link">
+                            Manage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
+
+

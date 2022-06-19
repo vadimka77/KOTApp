@@ -17,11 +17,7 @@
        class="link">
     @Model.Org.CompanyName</a> 
      >
-    <a asp-page="../Emp/Index"
-        asp-route-oid="@Model.Org.CompanyOwnerId"
-        asp-route-cid="@Model.Org.CompanyId"
-        class="link">
-    Employees</a>
+     Draws & Adjustments
 </h4>
 
 <p>
@@ -34,9 +30,11 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Type</th>
             <th>Employee</th>
-            <th>Transaction Date</th>
-            <th>Transaction Amount</th>
+           
             <th>Description</th>
             <th>Actions</th>
         </tr>
@@ -45,14 +43,18 @@
         @foreach (var item in Model.SpecialDrawList) {
             <tr>
                 <td>
-                    @item.Employee.FirstName @item.Employee.LastName
-                </td>
-                <td>
                     @item.TxDate.ToShortDateString()
                 </td>
                 <td>
-                    @item.TxAmount
+                    @item.TxAmount.ToString("F2")
                 </td>
+                <td>
+                    @item.TxType
+                </td>
+                <td>
+                    @item.Employee.FirstName @item.Employee.LastName
+                </td>
+                                
                 <td>
                     @item.Descr
                 </td>

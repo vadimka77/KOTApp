@@ -40,6 +40,16 @@
                 <input asp-for="Company.CurrentTFEnd" class="form-control" type="date"/>
                 <span asp-validation-for="Company.CurrentTFEnd" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="Company.CompanyOwnerPercent" class="control-label"></label>
+                <input asp-for="Company.CompanyOwnerPercent" class="form-control" />
+                <span asp-validation-for="Company.CompanyOwnerPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.EmployeeAdvancePercent" class="control-label"></label>
+                <input asp-for="Company.EmployeeAdvancePercent" class="form-control" />
+                <span asp-validation-for="Company.EmployeeAdvancePercent" class="text-danger"></span>
+            </div>
             <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
