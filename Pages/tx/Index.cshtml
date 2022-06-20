@@ -1,0 +1,49 @@
+﻿@page
+@model KOTApp.Pages.tx.IndexModel
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+     >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+      @Model.Org.CompanyName</a> 
+    > Transactions 
+</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Transaction Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TrEntries) {
+            <tr>
+                <td>@item.Employee.FullName</td>
+                <td>@item.TxType</td>
+                <td>@item.TxAmount</td>
+                <td>@item.Descr</td>
+                <td>@item.TxDate.ToShortDateString()</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.TxId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.TxId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.TxId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

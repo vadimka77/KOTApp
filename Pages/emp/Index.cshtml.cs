@@ -21,11 +21,12 @@ namespace KOTApp.Pages.org.emp
             _db = context;
         }
 
-        public async Task OnGetAsync(int cid)
+        public void OnGet(int cid)
         {
-            Org = await _db.Companies
-                .Include(e => e.Employees)
-                .Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
+            Org = _db.Companies
+                     .Include(e => e.Employees)
+                     .Where(c => c.CompanyId == cid)
+                     .FirstOrDefault();
 
             Employees =  Org.Employees;
         }
@@ -33,19 +34,19 @@ namespace KOTApp.Pages.org.emp
         public IActionResult OnPostDraw(int cid)
         {
             Org = _db.Companies
-                .Include(e => e.Employees)
-                .Where(c => c.CompanyId == cid)
-                .FirstOrDefault();
+                     .Include(e => e.Employees)
+                     .Where(c => c.CompanyId == cid)
+                     .FirstOrDefault();
             
             Employees = Org.Employees
-                .Where(e => e.CompanyId == cid && e.TermDate == null)
-                .ToList();
+                           .Where(e => e.CompanyId == cid && e.TermDate == null)
+                           .ToList();
 
             List<TxEntry> txList = _db.TxEntries
-                .Where(t => t.TxType == TxType.Draw 
-                        && t.TxDate > Org.CurrentTFStart 
-                        && t.TxDate < Org.CurrentTFEnd)
-                .ToList();
+                                      .Where(t => t.TxType == TxType.Draw 
+                                               && t.TxDate > Org.CurrentTFStart 
+                                               && t.TxDate < Org.CurrentTFEnd)
+                                      .ToList();
 
             foreach (var emp in Employees)
             {
@@ -53,11 +54,9 @@ namespace KOTApp.Pages.org.emp
                     .Where(t => t.EmployeeId == emp.EmployeeId)
                     .FirstOrDefault();
 
-                //if no transaction found AND employee has draw > 0
                 if (empDraw == null && emp.DrawAmount > 0)
                 {
-                    // add New Transaction for Employee
-                    TxEntry txEntry = new TxEntry
+                    var txEntry = new TxEntry
                     {
                         TxDate = Org.CurrentTFEnd.AddSeconds(-1),
                         TxAmount = emp.DrawAmount * -1,
@@ -67,12 +66,13 @@ namespace KOTApp.Pages.org.emp
                     };
                     _db.TxEntries.Add(txEntry);
                 }
-                //transaction entry found update amount or delete if 0
+
                 if(empDraw != null )
                 {
                     if (emp.DrawAmount == 0)
                         _db.TxEntries.Remove(empDraw);
-                    else //todo - change Amount not saving
+
+                    else
                         empDraw.TxAmount = emp.DrawAmount * -1;
                 }
                 

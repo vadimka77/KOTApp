@@ -1,0 +1,60 @@
+﻿@page
+@model KOTApp.Pages.emp.TerminateModel
+
+@{
+    ViewData["Title"] = "Terminate Employee";
+}
+
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid=@Model.Org.CompanyOwnerId 
+       class="link">
+    My Companies</a> 
+    >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+    @Model.Org.CompanyName</a> 
+    >
+    <a href='@("/emp/index?&cid=" + Model.Employee.CompanyId)'>Employees</a>
+    > Terminate Employee
+</h4>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">First Name</dt>
+        <dd class="col-sm-10">@Model.Employee.FirstName</dd>
+
+        <dt class="col-sm-2">Last Name</dt>
+        <dd class="col-sm-10">@Model.Employee.LastName</dd>
+        
+        <dt class="col-sm-2">Hired Date</dt>
+        <dd class="col-sm-10">@Model.Employee.HiredDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Terminate Date</dt>
+        <dd class="col-sm-10">@DateTime.Now</dd>
+
+        <dt class="col-sm-2">Draw Amount</dt>
+        <dd class="col-sm-10">@Model.Employee.DrawAmount</dd>
+
+        <dt class="col-sm-2">Commission Percent</dt>
+        <dd class="col-sm-10">@Model.Employee.EmpCommPercent</dd>
+
+        <dt class="col-sm-2">Company</dt>
+        <dd class="col-sm-10">@Model.Employee.Company.CompanyName</dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Employee.EmployeeId" />
+
+        <button type="submit" class="btn btn-danger">Terminate</button>
+
+        <a asp-page="./Index"
+           asp-route-oid="@Model.Employee.Company.CompanyOwnerId"
+           asp-route-cid="@Model.Employee.CompanyId"
+           class="btn btn-info">
+        Back to List</a>
+    </form>
+</div>

@@ -1,5 +1,5 @@
 ﻿@page
-@model KOTApp.Pages.tx.empModel
+@model KOTApp.Pages.tx.EmpModel
 
 @{
     ViewData["Title"] = "Employee Transactions";
@@ -16,66 +16,44 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
-   > <a href='@("/tx/index?&cid=" + Request.Query["cid"])'> Transactions </a> > Employee 
+   > <a href='@("/tx/index?&cid=" + Model.Emp.CompanyId)'> Transactions </a> > Employee 
 </h4>
 <h3>@Model.Emp.FullName </h3>
-<h4>[@Model.Org.CurrentTFStart.ToString("yyyy-MM-dd") - @Model.Org.CurrentTFStart.ToString("yyyy-MM-dd")]</h4>
+<h4>[@Model.Org.CurrentTFStart.ToString("yyyy-MM-dd") - @Model.Org.CurrentTFEnd.ToString("yyyy-MM-dd")]</h4>
 <table class="table">
     <thead>
         <tr>
-            <th>
-               Date
-            </th>
-            <th>
-              Amount
-            </th>
-            <th>
-               Type
-            </th>
-           
-            <th>
-                Description
-            </th>
-            <th>
-               Contract
-            </th>
-           
-            <th></th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Contract</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TxList) {
-        <tr>
-             <td>
-                @item.TxDate.ToString("yyyy-MM-dd")
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.TxAmount)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.TxType)
-            </td>
-            
-            <td>
-                @item.Descr
-            </td>
-           
-            <td>
-                @item.Contract?.ContractName
-            </td>
-            <td> 
-                  
-                        @if (item.TxType == Models.TxType.SpecialDraw || item.TxType == Models.TxType.Adjustment)
-                        {
-                            <a  asp-page="../specialDraws/Edit" 
-                                asp-route-cid="@item.CompanyId" asp-route-eid="@item.EmployeeId" asp-route-tid="@item.TxId">Edit</a>
-                            
-                             <a href="#" > !!!Delete!!! </a> 
-                        }
-                    
-               
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.TxList) 
+        {
+            <tr>
+                <td>@item.TxDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.TxAmount</td>
+                <td>@item.TxType</td>
+                <td>@item.Descr</td>
+                <td>@item.Contract?.ContractName</td>
+                <td> 
+                    @if (item.TxType == Models.TxType.SpecialDraw 
+                      || item.TxType == Models.TxType.Adjustment)
+                    {
+                        <a  asp-page="../specialDraws/Edit" 
+                            asp-route-cid="@item.CompanyId" 
+                            asp-route-eid="@item.EmployeeId" 
+                            asp-route-tid="@item.TxId">
+                        Edit</a>
+                        
+                        <a href="#" > !!!Delete!!! </a> 
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -10,17 +10,17 @@
        asp-route-oid=@Model.Org.CompanyOwnerId 
        class="link">
     My Companies</a> 
-     >
+    >
     <a asp-page="../Org/OrgDetails" 
        asp-route-oid="@Model.Org.CompanyOwnerId"
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
       @Model.Org.CompanyName</a> 
-
-   > <a href='@("/emp/index?&cid=" + Request.Query["cid"])'> Employees</a> > 
-   
+    >
+    <a href='@("/emp/index?&cid=" + Model.Employee.CompanyId)'>Employees</a>
+    >
+    @(@Model.Employee.EmployeeId==0 ? "Add New" : "Update") Employee Info
 </h4>
-<h3> @(@Model.Employee.EmployeeId==0?"Add New":"Update") Employee Info</h3>
 
 <hr />
 <div class="row">
@@ -51,16 +51,15 @@
             <div class="form-group">
                 <label asp-for="Employee.DrawAmount" class="control-label"></label>
                 <input asp-for="Employee.DrawAmount" class="form-control"/>
-               
+                <span asp-validation-for="Employee.HiredDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.EmpCommPercent" class="control-label"></label>
                 <input asp-for="Employee.EmpCommPercent" class="form-control" />
-                
+                <span asp-validation-for="Employee.HiredDate" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
                 <button type="submit" class="btn btn-primary">Save</button>
-            
             </div>
         </form>
     </div>

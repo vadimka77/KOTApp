@@ -29,36 +29,27 @@
         <dd class="col-sm-10">@Model.Contract.Company.CompanyName</dd>
 
         <dt class="col-sm-2">Employee</dt>
-        <dd class="col-sm-10">
-                              @Model.Contract.Employee.FirstName
-                              @Model.Contract.Employee.LastName
-        </dd>
+        <dd class="col-sm-10">@Model.Contract.Employee.FullName</dd>
 
         <dt class="col-sm-2">Contract Name</dt>
         <dd class="col-sm-10">@Model.Contract.ContractName</dd>
 
         <dt class="col-sm-2">Contract Date</dt>
-        <dd class="col-sm-10">@Model.Contract.StartDate</dd>
+        <dd class="col-sm-10">@Model.Contract.StartDate.ToShortDateString()</dd>
 
         <dt class="col-sm-2">Contract Amount</dt>
         <dd class="col-sm-10">@Model.Contract.ContractAmount</dd>
 
-        <dt class="col-sm-2">Employee Commission Percent</dt>
-        <dd class="col-sm-10">@Model.Contract.Employee.EmpCommPercent</dd>
-
         <dt class="col-sm-2">Advance Percent</dt>
         <dd class="col-sm-10">@Model.Contract.AdvancePercent</dd>
-
-        <dt class="col-sm-2">Company Owner Amount</dt>
-        <dd class="col-sm-10">@Model.Contract.CompanyOwnerAmount</dd>
-
+        
         <dt class="col-sm-2">Advance Amount</dt>
         <dd class="col-sm-10">@Model.Contract.AdvanceAmount</dd>
 
         <dt class="col-sm-2">Change Orders Total</dt>
         <dd class="col-sm-10">@Model.Contract.COTotal</dd>
 
-        <dt class="col-sm-2">Final Amount</dt>
+        <dt class="col-sm-2">NET Sale</dt>
         <dd class="col-sm-10">@Model.Contract.NETSale</dd>
 
         <dt class="col-sm-2">Cost</dt>
@@ -67,6 +58,20 @@
         <dt class="col-sm-2">Gross Profit</dt>
         <dd class="col-sm-10">@Model.Contract.GrossProfit</dd>
 
+        <dt class="col-sm-2">Company Owner Amount</dt>
+        <dd class="col-sm-10">@Model.Contract.CompanyOwnerAmount</dd>
+
+        <dt class="col-sm-2">Employee Commission Percent</dt>
+        <dd class="col-sm-10">@Model.Contract.EmpCommPercent</dd>
+
+        <dt class="col-sm-2">Employee Commission Due</dt>
+        <dd class="col-sm-10">@Model.Contract.EmpCommAmount</dd>
+
+        <dt class="col-sm-2">Employee Balance Due</dt>
+        <dd class="col-sm-10">@Model.Contract.EmpBalanceAmount</dd>
+
+        <dt class="col-sm-2">Completion Certificate</dt>
+        <dd class="col-sm-10">none</dd>
     </dl>
 </div>
 @foreach(var item in Model.Contract.ChangeOrders)

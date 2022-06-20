@@ -19,7 +19,7 @@ namespace KOTApp.Pages.org.emp
         [BindProperty]
         public Employee Employee { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? eid, int cid)
+        public async Task<IActionResult> OnGetAsync(int cid, int? eid)
         {
             Org = _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
 
@@ -41,10 +41,7 @@ namespace KOTApp.Pages.org.emp
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
                 return Page();
-
-            }
 
             if (Employee.EmployeeId == 0)
                 _db.Add(Employee);

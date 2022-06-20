@@ -18,7 +18,7 @@ namespace KOTApp.Pages.contracts
 
         public IList<Contract> ContractList { get; set; } = default!;
 
-        public async Task OnGetAsync(int oid, int cid)
+        public async Task OnGetAsync(int cid)
         {
             Org = await _db.Companies
                 .Where(c => c.CompanyId == cid)
