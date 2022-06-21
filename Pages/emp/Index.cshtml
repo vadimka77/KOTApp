@@ -5,7 +5,7 @@
 }
 <h4>  
     <a asp-page="../Org/Index" 
-       asp-route-oid=@Model.Org.CompanyOwnerId 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
        class="link">
     My Companies</a> 
      >
@@ -78,7 +78,7 @@ Special Draws</a>
                            asp-route-cid="@item.CompanyId"
                            asp-route-eid="@item.EmployeeId"
                            class="btn btn-outline-danger">
-                        Terminate</a>
+                        Terminate (Just Delete)</a>
                     </form>
                 </td>
             </tr>

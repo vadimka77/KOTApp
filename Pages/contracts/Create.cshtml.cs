@@ -3,6 +3,7 @@ using KOTApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace KOTApp.Pages.contracts
 {
@@ -10,9 +11,11 @@ namespace KOTApp.Pages.contracts
     {
         private readonly ApplicationDbContext _db;
 
+        [BindProperty]
+        public Contract Contract { get; set; } = default!;
+
         public Company Org;
 
-        public SelectList OrgSelectList;
         public SelectList EmpSelectList;
 
         public CreateModel(ApplicationDbContext context)
@@ -20,27 +23,44 @@ namespace KOTApp.Pages.contracts
             _db = context;
         }
 
-        public IActionResult OnGet(int cid)
+        public ActionResult OnGet(int cid)
         {
             Org = _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
-            OrgSelectList = new SelectList(_db.Companies, "CompanyId", "CompanyName");
-            EmpSelectList = new SelectList(_db.Employees, "EmployeeId", "LastName");
+            EmpSelectList = new SelectList(_db.Employees, "EmployeeId", "FullName");
+            Contract = new Contract()
+            {
+                CompanyId = cid,
+                StartDate = Org.CurrentTFStart,
+                EmpCommPercent = 0,
+                AdvancePercent = Org.EmployeeAdvancePercent,
+                CompanyOwnerPercent = Org.CompanyOwnerPercent,
+                CompletionCertificate = "-"
+            };
             return Page();
         }
 
-        [BindProperty]
-        public Contract Contract { get; set; } = default!;
-
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid || _db.Contracts == null || Contract == null)
                 return Page();
 
+            var Employee = _db.Employees.Include(c => c.Company)
+                                        .Where(c => c.EmployeeId == Contract.EmployeeId)
+                                        .FirstOrDefault();
+            Contract.COTotal = 0;
+            Contract.EmpCommPercent = Employee.EmpCommPercent;
+            Contract.AdvanceAmount = Contract.ContractAmount / 100 * Contract.AdvancePercent;
+            Contract.NETSale = Contract.ContractAmount + Contract.COTotal;
+            Contract.GrossProfit = Contract.NETSale - Contract.Cost;
+            Contract.CompanyOwnerAmount = Contract.GrossProfit / 100 * Contract.CompanyOwnerPercent;
+            Contract.EmpCommAmount = (Contract.GrossProfit - Contract.CompanyOwnerAmount) / 100 * Contract.EmpCommPercent;
+            Contract.EmpBalanceAmount = Contract.EmpCommAmount - Contract.AdvanceAmount;
+
             _db.Contracts.Add(Contract);
+            
+            _db.SaveChanges();
 
-            await _db.SaveChangesAsync();
-
-            return RedirectToPage($"./Index?cid=");
+            return Redirect($"./Index?oid={Employee.Company.CompanyOwnerId}&cid={Employee.CompanyId}");
         }
     }
 }

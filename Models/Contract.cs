@@ -13,7 +13,7 @@ namespace KOTApp.Models
         public string ContractName { get; set; }
 
         [Display(Name = "Completion Certificate")]
-        public string CompletionCertificate { get; set; }
+        public string? CompletionCertificate { get; set; }
 
 
         [Required]
@@ -73,6 +73,6 @@ namespace KOTApp.Models
         public Company? Company { get; set; }
 
 
-        public List<ChangeOrder> ChangeOrders { get; set; }
+        public List<ChangeOrder>? ChangeOrders { get; set; }
     }
 }

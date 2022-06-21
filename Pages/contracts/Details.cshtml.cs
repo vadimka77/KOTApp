@@ -12,8 +12,6 @@ namespace KOTApp.Pages.contracts
 
         public Company Org;
 
-        public Employee Emp;
-
         public DetailsModel(ApplicationDbContext context)
         {
             _db = context;
@@ -34,12 +32,6 @@ namespace KOTApp.Pages.contracts
 
             Contract = contract;
 
-            Contract.AdvanceAmount = Contract.ContractAmount * Contract.AdvancePercent;
-            Contract.NETSale = Contract.ContractAmount + Contract.COTotal;
-            Contract.GrossProfit = Contract.NETSale - Contract.Cost;
-            Contract.CompanyOwnerAmount = Contract.GrossProfit * Contract.CompanyOwnerPercent;
-            Contract.EmpCommAmount = (Contract.GrossProfit - Contract.CompanyOwnerAmount) * Contract.EmpCommPercent;
-            Contract.EmpBalanceAmount = Contract.EmpCommAmount - Contract.AdvanceAmount; 
             return Page();
         }
     }

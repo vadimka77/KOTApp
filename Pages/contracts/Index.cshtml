@@ -7,7 +7,7 @@
 
 <h4>  
     <a asp-page="../Org/Index" 
-       asp-route-oid=@Model.Org.CompanyOwnerId 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
        class="link">
     My Companies</a> 
      >
@@ -42,16 +42,10 @@ Add New Contract</a>
                 <td>@item.ContractName</td>
                 <td>@item.StartDate.ToShortDateString()</td>
                 <td>@item.ContractAmount</td>
-                <td>@item.Employee.FirstName @item.Employee.LastName</td>
+                <td>@item.Employee.FullName</td>
                 <td>
-                    <a asp-page="./Edit" 
-                       asp-route-cid="@item.CompanyId"
-                       asp-route-jid="@item.ContractId"
-                       class="btn btn-outline-secondary">
-                    Edit</a>
                     <a asp-page="./Details" 
                        asp-route-cid="@item.CompanyId"
-                       asp-route-eid="@item.EmployeeId"
                        asp-route-jid="@item.ContractId"
                        class="btn btn-outline-info">
                     Info</a>
@@ -60,3 +54,7 @@ Add New Contract</a>
         }
     </tbody>
 </table>
+
+@*
+    add is contract actve (is close date has value)
+*@

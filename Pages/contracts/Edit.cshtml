@@ -7,7 +7,7 @@
 
 <h4> 
     <a asp-page="../Org/Index" 
-       asp-route-oid=@Model.Org.CompanyOwnerId 
+       asp-route-oid="@Model.Org.CompanyOwnerId" 
        class="link">
     My Companies</a> 
      >
@@ -17,6 +17,7 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
+   > <a href='@("/contracts/index?cid=" + Model.Org.CompanyId)'>Contracts</a>
    > Update Contract Info
 </h4>
 <hr />
@@ -38,7 +39,6 @@
             <input type="hidden" asp-for="Job.AdvancePercent" />
             <input type="hidden" asp-for="Job.CompanyOwnerPercent" />
             <input type="hidden" asp-for="Job.EmpCommPercent" />
-            <input type="hidden" asp-for="Job.StartDate" />
 
             <div class="form-group">
                 <label asp-for="Job.ContractName" class="control-label"></label>
@@ -46,14 +46,26 @@
                 <span asp-validation-for="Job.ContractName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Job.StartDate" class="control-label"></label>
+                <input asp-for="Job.StartDate" class="form-control" type="date"/>
+            </div>
+            <div class="form-group">
                 <label asp-for="Job.CloseDate" class="control-label"></label>
-                <input asp-for="Job.CloseDate" class="form-control" />
-                <span asp-validation-for="Job.CloseDate" class="text-danger"></span>
+                <input asp-for="Job.CloseDate" class="form-control" type="date"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Cost" class="control-label"></label>
+                <input asp-for="Job.Cost" class="form-control" />
+                <span asp-validation-for="Job.Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.COTotal" class="control-label"></label>
+                <input asp-for="Job.COTotal" class="form-control" />
+                <span asp-validation-for="Job.COTotal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Job.CompletionCertificate" class="control-label"></label>
                 <input asp-for="Job.CompletionCertificate" class="form-control" />
-                <span asp-validation-for="Job.CompletionCertificate" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />

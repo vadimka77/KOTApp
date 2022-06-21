@@ -7,7 +7,7 @@
 
 <h4>  
     <a asp-page="../Org/Index" 
-       asp-route-oid=@Model.Org.CompanyOwnerId 
+       asp-route-oid="@Model.Org.CompanyOwnerId" 
        class="link">
     My Companies</a> 
 
@@ -20,7 +20,11 @@
     > <a href='@("/contracts/index?cid=" + Model.Org.CompanyId)'>Contracts</a>
     > About Contract  
 </h4>
-
+<a asp-page="./Edit" 
+                       asp-route-cid="Contract.CompanyId"
+                       asp-route-jid="Contract.ContractId"
+                       class="btn btn-outline-secondary">
+                    Edit</a>
 <div>
     <hr />
     <dl class="row">
@@ -70,8 +74,11 @@
         <dt class="col-sm-2">Employee Balance Due</dt>
         <dd class="col-sm-10">@Model.Contract.EmpBalanceAmount</dd>
 
+        <dt class="col-sm-2">Close Date</dt>
+        <dd class="col-sm-10">@Model.Contract.CloseDate</dd>
+
         <dt class="col-sm-2">Completion Certificate</dt>
-        <dd class="col-sm-10">none</dd>
+        <dd class="col-sm-10">@Model.Contract.CompletionCertificate</dd>
     </dl>
 </div>
 @foreach(var item in Model.Contract.ChangeOrders)

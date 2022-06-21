@@ -21,53 +21,33 @@ namespace KOTApp.Pages.contracts
 
         public Company Org;
 
-        public SelectList EmpSelectList;
-
-        public IActionResult OnGet(int? cid, int? jid)
+        public IActionResult OnGet(int jid)
         {
-            Org = _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefault();
-            List<Employee> EmpList = _db.Employees.Where(e => e.CompanyId == cid).ToList();
-            EmpSelectList = new SelectList(EmpList, "EmployeeId", "LastName");
-
-            if (jid == null)
-            {
-                Job = new Contract()
-                {
-                    CompanyId = Org.CompanyId,
-                    EmployeeId = EmpList.First().EmployeeId,
-                    StartDate = DateTime.Now,
-                    ContractAmount = 0,
-                    ContractName = "",
-                };
-            }
-            else
-            {
-                Job = _db.Contracts.Where(j => j.ContractId == jid).FirstOrDefault();
-            }
+            Job = _db.Contracts.Include(e => e.Employee)
+                               .Include(c => c.Company)
+                               .Where(j => j.ContractId == jid)
+                               .FirstOrDefault();
+            Org = Job.Company;
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
-            if (Job.ContractId == 0)
-            {
-                _db.Add(Job);
-            }
+            Job.AdvanceAmount = Job.ContractAmount / 100 * Job.AdvancePercent;
+            Job.NETSale = Job.ContractAmount + Job.COTotal;
+            Job.GrossProfit = Job.NETSale - Job.Cost;
+            Job.CompanyOwnerAmount = Job.GrossProfit / 100 * Job.CompanyOwnerPercent;
+            Job.EmpCommAmount = (Job.GrossProfit - Job.CompanyOwnerAmount) / 100 * Job.EmpCommPercent;
+            Job.EmpBalanceAmount = Job.EmpCommAmount - Job.AdvanceAmount;
 
-            else
-            {
-                _db.Attach(Job).State = EntityState.Modified;
-            }
+            _db.Attach(Job).State = EntityState.Modified;
 
             _db.SaveChanges();
-
-            return Redirect($"./Index?&cid={Job.CompanyId}");
+            return Redirect($"./Details?&cid={Job.CompanyId}&jid={Job.ContractId}");
         }
     }
 }

@@ -7,7 +7,7 @@
 
 <h4>  
     <a asp-page="../Org/Index" 
-       asp-route-oid=@Model.Org.CompanyOwnerId 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
        class="link">
     My Companies</a> 
 
@@ -25,15 +25,19 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Contract.CompletionCertificate" />
+            <input type="hidden" asp-for="Contract.CloseDate" />
+            <input type="hidden" asp-for="Contract.AdvancePercent" />
+            <input type="hidden" asp-for="Contract.CompanyOwnerPercent" />
+            <input type="hidden" asp-for="Contract.CompanyId" />
             <div class="form-group">
                 <label asp-for="Contract.ContractName" class="control-label"></label>
                 <input asp-for="Contract.ContractName" class="form-control" />
                 <span asp-validation-for="Contract.ContractName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contract.CompletionCertificate" class="control-label"></label>
-                <input asp-for="Contract.CompletionCertificate" class="form-control" />
-                <span asp-validation-for="Contract.CompletionCertificate" class="text-danger"></span>
+                <label asp-for="Contract.Employee" class="control-label"></label>
+                <select asp-for="Contract.EmployeeId" class ="form-control" asp-items="@Model.EmpSelectList"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Contract.ContractAmount" class="control-label"></label>
@@ -41,9 +45,8 @@
                 <span asp-validation-for="Contract.ContractAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contract.AdvancePercent" class="control-label"></label>
-                <input asp-for="Contract.AdvancePercent" class="form-control" />
-                <span asp-validation-for="Contract.AdvancePercent" class="text-danger"></span>
+                <label asp-for="Contract.StartDate" class="control-label"></label>
+                <input asp-for="Contract.StartDate" class="form-control" type="date"/>
             </div>
             <div class="form-group">
                 <label asp-for="Contract.Cost" class="control-label"></label>
@@ -51,52 +54,14 @@
                 <span asp-validation-for="Contract.Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contract.NETSale" class="control-label"></label>
-                <input asp-for="Contract.NETSale" class="form-control" />
-                <span asp-validation-for="Contract.NETSale" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.StartDate" class="control-label"></label>
-                <input asp-for="Contract.StartDate" class="form-control" />
-                <span asp-validation-for="Contract.StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.CompanyId" class="control-label"></label>
-                <select asp-for="Contract.CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.CompanyOwnerAmount" class="control-label"></label>
-                <input asp-for="Contract.CompanyOwnerAmount" class="form-control" />
-                <span asp-validation-for="Contract.CompanyOwnerAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.CompanyOwnerPercent" class="control-label"></label>
-                <input asp-for="Contract.CompanyOwnerPercent" class="form-control" />
-                <span asp-validation-for="Contract.CompanyOwnerPercent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.EmployeeId" class="control-label"></label>
-                <select asp-for="Contract.EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.EmpCommAmount" class="control-label"></label>
-                <input asp-for="Contract.EmpCommAmount" class="form-control" />
-                <span asp-validation-for="Contract.EmpCommAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contract.EmpCommPercent" class="control-label"></label>
-                <input asp-for="Contract.EmpCommPercent" class="form-control" />
-                <span asp-validation-for="Contract.EmpCommPercent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                 <button type="submit" class="btn btn-primary mt-2">Save</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" asp-route-cid="@Model.Org.CompanyId">Back to List</a>
 </div>
 
 @section Scripts {
