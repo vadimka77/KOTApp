@@ -11,7 +11,7 @@ namespace KOTApp.Pages.costChanges
         private readonly ApplicationDbContext _db;
 
         public Company Org;
-        public Contract Job;
+        public orgJob Job;
 
         public EditModel(ApplicationDbContext context)
         {

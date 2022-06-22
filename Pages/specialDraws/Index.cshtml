@@ -34,34 +34,23 @@
             <th>Amount</th>
             <th>Type</th>
             <th>Employee</th>
-           
             <th>Description</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.SpecialDrawList) {
+        @foreach (var item in Model.SpecialDrawList) 
+        {
             <tr>
-                <td>
-                    @item.TxDate.ToShortDateString()
-                </td>
-                <td>
-                    @item.TxAmount.ToString("F2")
-                </td>
-                <td>
-                    @item.TxType
-                </td>
-                <td>
-                    @item.Employee.FirstName @item.Employee.LastName
-                </td>
-                                
-                <td>
-                    @item.Descr
-                </td>
+                <td>@item.TxDate.ToShortDateString()</td>
+                <td>@item.TxAmount.ToString("F2")</td>
+                <td>@item.TxType</td>
+                <td>@item.Employee.FullName</td>              
+                <td>@item.Descr</td>
                 <td>
                     <a asp-page="Edit" 
-                        asp-route-cid="@item.CompanyId" 
-                        asp-route-tid="@item.TxId" 
+                        asp-route-cid="@item.CompanyId"
+                        asp-route-tid="@item.TxId"
                         class="btn btn-outline-secondary">
                     Edit</a>
                 </td>

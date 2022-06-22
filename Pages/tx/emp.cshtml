@@ -16,7 +16,9 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
-   > <a href='@("/tx/index?&cid=" + Model.Emp.CompanyId)'> Transactions </a> > Employee 
+   > <a href='@("/tx/index?cid=" + Model.Emp.CompanyId)'> Transactions </a> 
+   > <a href='@("/emp/index?oid=" + Model.Emp.Company.CompanyOwnerId + 
+                          "&cid=" + Model.Emp.CompanyId)'> Employees </a> > @Model.Emp.FullName 
 </h4>
 <h3>@Model.Emp.FullName </h3>
 <h4>[@Model.Org.CurrentTFStart.ToString("yyyy-MM-dd") - @Model.Org.CurrentTFEnd.ToString("yyyy-MM-dd")]</h4>

@@ -2,7 +2,7 @@
 @model KOTApp.Pages.contracts.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Contract Details";
 }
 
 <h4>  
@@ -18,13 +18,10 @@
       @Model.Org.CompanyName</a> 
 
     > <a href='@("/contracts/index?cid=" + Model.Org.CompanyId)'>Contracts</a>
-    > About Contract  
+    > About Contract
 </h4>
-<a asp-page="./Edit" 
-                       asp-route-cid="Contract.CompanyId"
-                       asp-route-jid="Contract.ContractId"
-                       class="btn btn-outline-secondary">
-                    Edit</a>
+
+
 <div>
     <hr />
     <dl class="row">
@@ -114,11 +111,33 @@
     </table>
 }
 <div>
+ @*   
+@if (!Model.Contract.CloseDate.HasValue)
+{    
+        <a asp-page="./Edit" 
+            asp-route-cid="@Model.Contract.CompanyId"
+            asp-route-jid="@Model.Contract.ContractId"
+            class="btn btn-outline-secondary">
+        Edit</a>
+}else
+{
+    <label class="label label-info">CLOSED</label>
+@(!Model.Contract.CloseDate.HasValue?"btn-outline-secondary":"btn-default disabled")
+}*@
+
+ <a asp-page="./Edit" 
+            asp-route-cid="@Model.Contract.CompanyId"
+            asp-route-jid="@Model.Contract.ContractId"
+            class="btn btn-outline-secondary">
+        Edit</a>
+
     <a asp-page="./Edit"
        asp-route-cid="@Model.Org.CompanyId"
        asp-route-jid="@Model.Contract.ContractId"
        class="btn btn-secondary">
     Edit</a>
+
+
     <a asp-page="./Index" 
        asp-route-cid="@Model.Org.CompanyId" 
        class="btn btn-info">

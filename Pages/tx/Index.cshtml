@@ -19,30 +19,28 @@
     > Transactions 
 </h4>
 
+<a asp-page="Create" 
+   asp-route-cid="@Model.Org.CompanyId" 
+   class="btn btn-outline-primary">
+Add Transaction</a>
 <table class="table">
     <thead>
         <tr>
-            <th>Employee</th>
+            <th>Transaction Date</th>
             <th>Transaction Type</th>
             <th>Amount</th>
+            <th>Employee</th>
             <th>Description</th>
-            <th>Transaction Date</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.TrEntries) {
             <tr>
-                <td>@item.Employee.FullName</td>
+                <td>@item.TxDate.ToShortDateString()</td>
                 <td>@item.TxType</td>
                 <td>@item.TxAmount</td>
+                <td>@item.Employee.FullName</td>
                 <td>@item.Descr</td>
-                <td>@item.TxDate.ToShortDateString()</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.TxId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.TxId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.TxId">Delete</a>
-                </td>
             </tr>
         }
     </tbody>

@@ -20,8 +20,13 @@ namespace KOTApp.Pages.tx
 
         public async Task OnGetAsync(int cid)
         {
-            Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
-            TrEntries = await _db.TxEntries.Include(e => e.Employee).Include(c => c.Contract).ToListAsync();
+            Org = await _db.Companies.Where(c => c.CompanyId == cid)
+                                     .FirstOrDefaultAsync();
+            TrEntries = await _db.TxEntries.Include(e => e.Employee)
+                                           .Include(c => c.Contract)
+                                           .OrderBy(d => d.TxDate)
+                                           .Reverse()
+                                           .ToListAsync();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace KOTApp.Pages.contracts
 
         public Company Org;
 
-        public IList<Contract> ContractList { get; set; } = default!;
+        public IList<orgJob> ContractList { get; set; } = default!;
 
         public async Task OnGetAsync(int cid)
         {

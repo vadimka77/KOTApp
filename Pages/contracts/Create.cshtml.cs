@@ -41,12 +41,14 @@ namespace KOTApp.Pages.contracts
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid || _db.Contracts == null || Contract == null)
+            if (!ModelState.IsValid )
                 return Page();
 
             var Employee = _db.Employees.Include(c => c.Company)
                                         .Where(c => c.EmployeeId == Contract.EmployeeId)
                                         .FirstOrDefault();
+
+            Contract = new Contract();
             Contract.COTotal = 0;
             Contract.EmpCommPercent = Employee.EmpCommPercent;
             Contract.AdvanceAmount = Contract.ContractAmount / 100 * Contract.AdvancePercent;
@@ -56,8 +58,20 @@ namespace KOTApp.Pages.contracts
             Contract.EmpCommAmount = (Contract.GrossProfit - Contract.CompanyOwnerAmount) / 100 * Contract.EmpCommPercent;
             Contract.EmpBalanceAmount = Contract.EmpCommAmount - Contract.AdvanceAmount;
 
+            var Transaction = new TxEntry()
+            {
+                TxDate = Contract.StartDate,
+                TxType = TxType.Advance,
+                TxAmount = Contract.AdvanceAmount,
+                Employee = Employee,
+                Descr = $"{Contract.AdvancePercent} Advance",
+                ContractId = Contract.ContractId,
+                CompanyId = Contract.CompanyId
+            };
+
             _db.Contracts.Add(Contract);
-            
+            _db.TxEntries.Add(Transaction);
+
             _db.SaveChanges();
 
             return Redirect($"./Index?oid={Employee.Company.CompanyOwnerId}&cid={Employee.CompanyId}");

@@ -21,13 +21,15 @@ namespace KOTApp.Pages.specialDraws
 
         public Company Org;
 
-        public SelectList EmpSelectList;
+        public SelectList EmpSelectList, TxTypeSelectList;
 
         public async Task<IActionResult> OnGetAsync(int? cid, int? tid)
         {
             Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
             List<Employee> EmpList = _db.Employees.Where(e => e.CompanyId == cid).ToList();
             EmpSelectList = new SelectList(EmpList, "EmployeeId", "FullName");
+            //ViewData[""] = new SelectList(TxList, "TxType", "TxType");
+
             if (tid == null)
             {
                 TrEntry = new TxEntry()
@@ -43,6 +45,7 @@ namespace KOTApp.Pages.specialDraws
             {
                 TrEntry = _db.TxEntries.Where(t => t.TxId == tid).FirstOrDefault();
             }
+
             return Page();
         }
 
