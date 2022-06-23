@@ -2,7 +2,7 @@
 @model KOTApp.Pages.specialDraws.IndexModel
 
 @{
-    ViewData["Title"] = "Special Draws";
+    ViewData["Title"] = "Adjustments";
 }
 
 <h4>  
@@ -10,21 +10,26 @@
        asp-route-oid=@Model.Org.CompanyOwnerId 
        class="link">
     My Companies</a> 
-     >
+    >
     <a asp-page="../Org/OrgDetails" 
        asp-route-oid="@Model.Org.CompanyOwnerId"
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
     @Model.Org.CompanyName</a> 
-     >
-     Draws & Adjustments
+    > Special Draws & Adjustments
 </h4>
 
 <p>
     <a asp-page="Edit"
         asp-route-cid="@Model.Org.CompanyId"
+        asp-route-type="SpecialDraw"
         class="btn btn-outline-primary">
     Add New Special Draw</a>
+    <a asp-page="Edit"
+        asp-route-cid="@Model.Org.CompanyId"
+        asp-route-type="Adjustment"
+        class="btn btn-outline-primary">
+    Add New Adjustment</a>
 </p>
 
 <table class="table">
@@ -39,7 +44,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.SpecialDrawList) 
+        @foreach (var item in Model.TxList) 
         {
             <tr>
                 <td>@item.TxDate.ToShortDateString()</td>
@@ -53,6 +58,14 @@
                         asp-route-tid="@item.TxId"
                         class="btn btn-outline-secondary">
                     Edit</a>
+                    @*
+                        <a asp-page="Edit" 
+                            asp-route-cid="@item.CompanyId"
+                            asp-route-tid="@item.TxId"
+                            asp-page-handler="Delete"
+                            class="btn btn-outline-danger">
+                        Delete</a>
+                    *@
                 </td>
             </tr>
         }

@@ -39,7 +39,7 @@ namespace KOTApp.Models
         public decimal EmpCommPercent { get; set; }
 
         public ICollection<TxEntry>? TxEntries { get; set; }
-        public ICollection<orgJob>? Contracts { get; set; }
+        public ICollection<Contract>? Contracts { get; set; }
 
 
         public int CompanyId { get; set; }

@@ -17,7 +17,7 @@ namespace KOTApp.Pages.contracts
             _db = context;
         }
 
-        public orgJob Contract { get; set; } = default!;
+        public Contract Contract { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int cid, int? jid)
         {

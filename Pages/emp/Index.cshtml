@@ -15,11 +15,7 @@
        class="link">
       @Model.Org.CompanyName</a> 
 
-   > Employees
-    <a asp-page="Edit" 
-       asp-route-cid='@Model.Org.CompanyId' 
-       class="btn btn-sm btn-outline-primary float-end">
-       Add New Employee</a>
+   > Employees  
 </h4>
 
 <form method="post">
@@ -29,6 +25,11 @@
         type="submit">
     Post Regular Draws</button>
 </form>
+
+<a asp-page="Edit" 
+       asp-route-cid='@Model.Org.CompanyId' 
+       class="btn btn-outline-primary">
+       Add New Employee</a>
 
 <a asp-page="../specialDraws/Index"
    asp-route-cid="@Model.Org.CompanyId"
