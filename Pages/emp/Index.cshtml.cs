@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KOTApp.Data;
+using KOTApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using KOTApp.Data;
-using KOTApp.Models;
 
 namespace KOTApp.Pages.org.emp
 {
@@ -16,6 +12,7 @@ namespace KOTApp.Pages.org.emp
 
         public Company Org;
         public IEnumerable<Employee> Employees { get; set; } = default!;
+
         public IndexModel(ApplicationDbContext context)
         {
             _db = context;
@@ -28,7 +25,7 @@ namespace KOTApp.Pages.org.emp
                      .Where(c => c.CompanyId == cid)
                      .FirstOrDefault();
 
-            Employees =  Org.Employees;
+            Employees = Org.Employees;
         }
 
         public IActionResult OnPostDraw(int cid)
@@ -37,22 +34,21 @@ namespace KOTApp.Pages.org.emp
                      .Include(e => e.Employees)
                      .Where(c => c.CompanyId == cid)
                      .FirstOrDefault();
-            
+
             Employees = Org.Employees
                            .Where(e => e.CompanyId == cid && e.TermDate == null)
                            .ToList();
 
             List<TxEntry> txList = _db.TxEntries
-                                      .Where(t => t.TxType == TxType.Draw 
-                                               && t.TxDate > Org.CurrentTFStart 
+                                      .Where(t => t.TxType == TxType.Draw
+                                               && t.TxDate > Org.CurrentTFStart
                                                && t.TxDate < Org.CurrentTFEnd)
                                       .ToList();
 
             foreach (var emp in Employees)
             {
-                var empDraw = txList
-                    .Where(t => t.EmployeeId == emp.EmployeeId)
-                    .FirstOrDefault();
+                var empDraw = txList.Where(t => t.EmployeeId == emp.EmployeeId)
+                                    .FirstOrDefault();
 
                 if (empDraw == null && emp.DrawAmount > 0)
                 {
@@ -67,7 +63,7 @@ namespace KOTApp.Pages.org.emp
                     _db.TxEntries.Add(txEntry);
                 }
 
-                if(empDraw != null )
+                if (empDraw != null)
                 {
                     if (emp.DrawAmount == 0)
                         _db.TxEntries.Remove(empDraw);
@@ -75,11 +71,11 @@ namespace KOTApp.Pages.org.emp
                     else
                         empDraw.TxAmount = emp.DrawAmount * -1;
                 }
-                
+
             }
 
             _db.SaveChanges();
             return Page();
         }
     }
-} 
+}

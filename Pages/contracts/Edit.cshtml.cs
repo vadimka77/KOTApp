@@ -44,8 +44,8 @@ namespace KOTApp.Pages.contracts
 
             bool IsClosedDateJustAdded = (!orgJob.CloseDate.HasValue && Job.CloseDate.HasValue);
             bool IsClosedDateChanged = (orgJob.CloseDate.HasValue 
-                && Job.CloseDate.HasValue
-                && orgJob.CloseDate.Value.Date != Job.CloseDate.Value.Date);
+                                        && Job.CloseDate.HasValue
+                                        && orgJob.CloseDate.Value.Date != Job.CloseDate.Value.Date);
 
             if (IsClosedDateJustAdded || IsClosedDateChanged)
             {
@@ -58,7 +58,6 @@ namespace KOTApp.Pages.contracts
             if (!ModelState.IsValid)
                 return Page();
                 
-
             if (orgJob.COTotal != Job.COTotal || orgJob.Cost != Job.Cost)
             {
                 orgJob.AdvanceAmount = Job.AdvanceAmount = Job.ContractAmount / 100 * Job.AdvancePercent;

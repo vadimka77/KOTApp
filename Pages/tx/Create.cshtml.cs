@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KOTApp.Data;
+using KOTApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using KOTApp.Data;
-using KOTApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KOTApp.Pages.tx
@@ -20,7 +16,7 @@ namespace KOTApp.Pages.tx
         public SelectList EmpSelectList, TxTypeSelectList;
 
         [BindProperty]
-        public TxEntry TxEntry { get; set; } = default!;
+        public TxEntry TrEntry { get; set; } = default!;
 
         public CreateModel(ApplicationDbContext context)
         {
@@ -30,27 +26,28 @@ namespace KOTApp.Pages.tx
         public async Task<ActionResult> OnGet(int cid)
         {
             Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
-            EmpSelectList = new SelectList(_db.Employees, "EmployeeId", "EmployeeId");
-            TxTypeSelectList = new SelectList(_db.TxEntries, "TxType", "TxType");
-            TxEntry = new TxEntry()
+            EmpSelectList = new SelectList(_db.Employees.Where(e => e.CompanyId == cid),
+                                           "EmployeeId", "FullName");
+            TxTypeSelectList = new SelectList(_db.TxEntries, "TxType", "TxType"); // add distinct
+            TrEntry = new TxEntry()
             {
                 TxDate = DateTime.Now,
                 TxAmount = 0,
-
+                CompanyId = cid
             };
             return Page();
         }
-        
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _db.TxEntries == null || TxEntry == null)
+            if (!ModelState.IsValid || _db.TxEntries == null || TrEntry == null)
                 return Page();
 
-            _db.TxEntries.Add(TxEntry);
+            _db.TxEntries.Add(TrEntry);
 
             await _db.SaveChangesAsync();
 
-            return Redirect($"./Index?cid={TxEntry.CompanyId}");
+            return Redirect($"./Index?cid={TrEntry.CompanyId}");
         }
     }
 }

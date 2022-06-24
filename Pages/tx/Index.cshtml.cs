@@ -24,6 +24,7 @@ namespace KOTApp.Pages.tx
                                      .FirstOrDefaultAsync();
             TrEntries = await _db.TxEntries.Include(e => e.Employee)
                                            .Include(c => c.Contract)
+                                           .Where(t => t.TxType != TxType.Adjustment)
                                            .OrderBy(d => d.TxDate)
                                            .Reverse()
                                            .ToListAsync();

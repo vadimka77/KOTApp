@@ -74,5 +74,16 @@ namespace KOTApp.Models
 
 
         public List<ChangeOrder>? ChangeOrders { get; set; }
+
+
+        public void CalculateAutoFields()
+        {
+            AdvanceAmount = ContractAmount / 100 * AdvancePercent;
+            NETSale = ContractAmount + COTotal;
+            GrossProfit = NETSale - Cost;
+            CompanyOwnerAmount = GrossProfit / 100 * CompanyOwnerPercent;
+            EmpCommAmount = (GrossProfit - CompanyOwnerAmount) / 100 * EmpCommPercent;
+            EmpBalanceAmount = EmpCommAmount - AdvanceAmount;
+        }
     }
 }

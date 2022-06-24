@@ -44,7 +44,7 @@ namespace KOTApp.Pages.org.emp
                 return Page();
 
             if (Employee.EmployeeId == 0)
-                _db.Add(Employee);
+                await _db.AddAsync(Employee);
             else
                 _db.Attach(Employee).State = EntityState.Modified;
             

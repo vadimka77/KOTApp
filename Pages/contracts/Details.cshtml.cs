@@ -28,7 +28,8 @@ namespace KOTApp.Pages.contracts
             if (jid == null || _db.Contracts == null)
                 return NotFound();
 
-            var contract = await _db.Contracts.Include(c => c.ChangeOrders).FirstOrDefaultAsync(c => c.ContractId == jid);
+            var contract = await _db.Contracts.Include(c => c.ChangeOrders)
+                                              .FirstOrDefaultAsync(c => c.ContractId == jid);
 
             Contract = contract;
 

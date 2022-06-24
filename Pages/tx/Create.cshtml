@@ -2,59 +2,71 @@
 @model KOTApp.Pages.tx.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add";
 }
 
-<h1>Create</h1>
-
-<h4>TxEntry</h4>
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       class="link">
+    My Companies</a> 
+    >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+      @Model.Org.CompanyName</a> 
+    > 
+    <a asp-page="./Index"
+        asp-route-cid="@Model.Org.CompanyId"
+        class="link">
+    Transactions </a>
+    > Add Transaction 
+</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TrEntry.TxId" />
+            <input type="hidden" asp-for="TrEntry.CompanyId" />
+            <input type="hidden" asp-for="TrEntry.CompanyId" />
+
             <div class="form-group">
-                <label asp-for="TxEntry.Descr" class="control-label"></label>
-                <input asp-for="TxEntry.Descr" class="form-control" />
-                <span asp-validation-for="TxEntry.Descr" class="text-danger"></span>
+                <label asp-for="TrEntry.TxDate" class="control-label"></label>
+                <input asp-for="TrEntry.TxDate" class="form-control" type="date"/>
+                <span asp-validation-for="TrEntry.TxDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TxEntry.TxAmount" class="control-label"></label>
-                <input asp-for="TxEntry.TxAmount" class="form-control" />
-                <span asp-validation-for="TxEntry.TxAmount" class="text-danger"></span>
+                <label asp-for="TrEntry.TxAmount" class="control-label"></label>
+                <input asp-for="TrEntry.TxAmount" class="form-control" />
+                <span asp-validation-for="TrEntry.TxAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TxEntry.TxType" class="control-label"></label>
-                <select asp-for="TxEntry.TxType" class="form-control"></select>
-                <span asp-validation-for="TxEntry.TxType" class="text-danger"></span>
+                <label asp-for="TrEntry.TxType" class="control-label"></label>
+                <select asp-for="TrEntry.TxType" asp-items="@Model.TxTypeSelectList" class="form-control"></select>
+                <span asp-validation-for="TrEntry.TxType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TxEntry.TxDate" class="control-label"></label>
-                <input asp-for="TxEntry.TxDate" class="form-control" />
-                <span asp-validation-for="TxEntry.TxDate" class="text-danger"></span>
+                <label asp-for="TrEntry.Descr" class="control-label"></label>
+                <input asp-for="TrEntry.Descr" class="form-control" />
+                <span asp-validation-for="TrEntry.Descr" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TxEntry.EmployeeId" class="control-label"></label>
-                <select asp-for="TxEntry.EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <label asp-for="TrEntry.EmployeeId" class="control-label"></label>
+                <select asp-for="TrEntry.EmployeeId" asp-items="@Model.EmpSelectList" class ="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="TxEntry.CompanyId" class="control-label"></label>
-                <input asp-for="TxEntry.CompanyId" class="form-control" />
-                <span asp-validation-for="TxEntry.CompanyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TxEntry.ContractId" class="control-label"></label>
-                <select asp-for="TxEntry.ContractId" class ="form-control" asp-items="ViewBag.ContractId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="submit" class="btn btn-primary mt-2">Save</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" 
+       asp-route-cid="@Model.TrEntry.CompanyId">
+    Back to List</a>
 </div>
 
 @section Scripts {
