@@ -29,9 +29,10 @@ namespace KOTApp.Pages.contracts
             EmpSelectList = new SelectList(_db.Employees.Where(e => e.CompanyId == cid), "EmployeeId", "FullName");
             Contract = new Contract()
             {
-                CompanyId = cid,
+                CompanyId = Org.CompanyId,
                 StartDate = Org.CurrentTFStart,
                 EmpCommPercent = 0,
+                COTotal = 0,
                 AdvancePercent = Org.EmployeeAdvancePercent,
                 CompanyOwnerPercent = Org.CompanyOwnerPercent,
                 CompletionCertificate = "-"
@@ -48,12 +49,10 @@ namespace KOTApp.Pages.contracts
                                         .Where(c => c.EmployeeId == Contract.EmployeeId)
                                         .FirstOrDefault();
 
-            Contract = new Contract
-            {
-                COTotal = 0,
-                EmpCommPercent = Employee.EmpCommPercent
-            };
-
+            //Contract object created and already filled with user input from Form
+            // just find for selected employee specific commission percent
+            Contract.EmpCommPercent = Employee.EmpCommPercent;
+                        
             Contract.CalculateAutoFields();
 
             var Transaction = new TxEntry()
@@ -63,7 +62,8 @@ namespace KOTApp.Pages.contracts
                 TxAmount = Contract.AdvanceAmount,
                 Employee = Employee,
                 Descr = $"{Contract.AdvancePercent} Advance",
-                ContractId = Contract.ContractId,
+                Contract = Contract,//<-- this must be Object contract, NOT ContractId; ContractId=0 for all new; updated after Save is done.
+                // the EF will give new real ContractId to this TxEntry object when saving it - automatically!
                 CompanyId = Contract.CompanyId
             };
 

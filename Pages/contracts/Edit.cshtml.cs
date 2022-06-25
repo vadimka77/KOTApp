@@ -40,7 +40,7 @@ namespace KOTApp.Pages.contracts
                 .Where(c => c.ContractId == Job.ContractId)
                 .FirstOrDefault();
                         
-            Org = Job.Company;
+            Org = orgJob.Company;
 
             bool IsClosedDateJustAdded = (!orgJob.CloseDate.HasValue && Job.CloseDate.HasValue);
             bool IsClosedDateChanged = (orgJob.CloseDate.HasValue 
