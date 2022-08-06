@@ -28,7 +28,8 @@ namespace KOTApp.Pages.tx
             Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
             EmpSelectList = new SelectList(_db.Employees.Where(e => e.CompanyId == cid),
                                            "EmployeeId", "FullName");
-            TxTypeSelectList = new SelectList(_db.TxEntries, "TxType", "TxType"); // add distinct
+            //TxTypeSelectList = new SelectList(_db.TxEntries, "TxType", "TxType"); // add distinct
+            TxTypeSelectList = new SelectList(new List<string> { "Draw", "Adjustment", "Commission" });
             TrEntry = new TxEntry()
             {
                 TxDate = DateTime.Now,
