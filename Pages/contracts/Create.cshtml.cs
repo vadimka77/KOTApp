@@ -62,9 +62,9 @@ namespace KOTApp.Pages.contracts
                 TxAmount = Contract.AdvanceAmount,
                 Employee = Employee,
                 Descr = $"{Contract.AdvancePercent} Advance",
-                Contract = Contract,//<-- this must be Object contract, NOT ContractId; ContractId=0 for all new; updated after Save is done.
+                Contract = Contract, //<-- this must be Object contract, NOT ContractId; ContractId=0 for all new; updated after Save is done.
                 // the EF will give new real ContractId to this TxEntry object when saving it - automatically!
-                CompanyId = Contract.CompanyId
+                CompanyId = Org.CompanyId
             };
 
             _db.Contracts.Add(Contract);
@@ -72,7 +72,7 @@ namespace KOTApp.Pages.contracts
 
             _db.SaveChanges();
 
-            return Redirect($"./Index?oid={Employee.Company.CompanyOwnerId}&cid={Employee.CompanyId}");
+            return Redirect($"./Index?oid={Org.CompanyOwnerId}&cid={Org.CompanyId}");
         }
     }
 }

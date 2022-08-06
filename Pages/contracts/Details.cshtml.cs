@@ -4,36 +4,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace KOTApp.Pages.contracts
+namespace KOTApp.Pages.contracts;
+
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly ApplicationDbContext _db;
+
+    public Company Org;
+
+    public DetailsModel(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _db;
+        _db = context;
+    }
 
-        public Company Org;
+    public Contract Contract { get; set; } = default!;
 
-        public DetailsModel(ApplicationDbContext context)
-        {
-            _db = context;
-        }
+    public async Task<IActionResult> OnGetAsync(int cid, int? jid)
+    {
+        Org = await _db.Companies.Include(e => e.Employees) 
+                                 .Where(c => c.CompanyId == cid)
+                                 .FirstOrDefaultAsync();
 
-        public Contract Contract { get; set; } = default!;
+        if (jid == null || _db.Contracts == null)
+            return NotFound();
 
-        public async Task<IActionResult> OnGetAsync(int cid, int? jid)
-        {
-            Org = await _db.Companies.Include(e => e.Employees) 
-                                     .Where(c => c.CompanyId == cid)
-                                     .FirstOrDefaultAsync();
+        var contract = await _db.Contracts.Include(c => c.ChangeOrders)
+                                          .FirstOrDefaultAsync(c => c.ContractId == jid);
 
-            if (jid == null || _db.Contracts == null)
-                return NotFound();
+        Contract = contract;
 
-            var contract = await _db.Contracts.Include(c => c.ChangeOrders)
-                                              .FirstOrDefaultAsync(c => c.ContractId == jid);
+        contract.Txes = _db.TxEntries.Where(t => t.ContractId == jid).ToList();
 
-            Contract = contract;
-
-            return Page();
-        }
+        return Page();
     }
 }

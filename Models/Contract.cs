@@ -8,7 +8,6 @@ namespace KOTApp.Models
         [Key]
         public int ContractId { get; set; }
 
-
         [Display(Name = "Contract Name")]
         public string ContractName { get; set; }
 
@@ -75,6 +74,7 @@ namespace KOTApp.Models
 
         public List<ChangeOrder>? ChangeOrders { get; set; }
 
+        public List<TxEntry> Txes { get; set; }
 
         public void CalculateAutoFields()
         {
