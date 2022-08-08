@@ -19,8 +19,13 @@
         @Model.Org.CompanyAddress
     </span>
 
+    <a asp-page="../tx/All"
+       asp-route-cid="@Model.Org.CompanyId"
+       class="btn btn-outline-info">
+    See All Transactions</a>
+
     <a asp-page="./Edit" 
-       asp-route-cid="@Model.Org?.CompanyId" 
+       asp-route-cid="@Model.Org.CompanyId" 
        class="btn btn-sm btn-outline-secondary float-end">
     Edit Company Info</a>
 </h1>

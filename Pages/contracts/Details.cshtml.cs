@@ -32,8 +32,8 @@ public class DetailsModel : PageModel
                                           .FirstOrDefaultAsync(c => c.ContractId == jid);
 
         Contract = contract;
-
-        contract.Txes = _db.TxEntries.Where(t => t.ContractId == jid).ToList();
+        
+        contract.Txes = await _db.TxEntries.Where(t => t.ContractId == jid).ToListAsync();
 
         return Page();
     }
