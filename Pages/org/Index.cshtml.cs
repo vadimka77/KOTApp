@@ -20,10 +20,14 @@ namespace KOTApp.Pages.org
 
         public void OnGet(int oid)
         {
+            
             Owner = _db.CompanyOwners
                 .Include(c => c.Companies)
                 .Where(o => o.CompanyOwnerId == oid)
                 .FirstOrDefault();
+
+            //save ownerid in session to avoid passing via query
+            HttpContext.Session.SetInt32("oid", oid);
 
             if (Owner == null)
                 Redirect("/index");

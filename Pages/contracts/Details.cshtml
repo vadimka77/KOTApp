@@ -110,13 +110,13 @@
                 <td>@item.Cost</td>
                 <td>@item.Description</td>
                 <td>
-                   <a asp-page="../costChanges/Edit" 
+                   <a asp-page="../changeOrders/Edit" 
                        asp-route-cid="@Model.Org.CompanyId" 
                        asp-route-jid="@Model.Contract.ContractId"
                        class="btn btn-outline-success">
                    Edit</a>
-                   <a asp-page="../costChanges/Edit" 
-                       asp-route-cid="@Model.Org.CompanyId" 
+                    <a asp-page="../changeOrders/Delete"
+                   asp-route-cid="@Model.Org.CompanyId" 
                        asp-route-jid="@Model.Contract.ContractId"
                        class="btn btn-outline-danger">
                    Remove</a>

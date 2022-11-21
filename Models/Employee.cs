@@ -11,10 +11,10 @@ namespace KOTApp.Models
 
 
         [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
 
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        [Display(Name = "Last Name")] 
+        public string LastName { get; set; } = "";
 
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";

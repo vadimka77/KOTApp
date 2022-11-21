@@ -1,10 +1,11 @@
-﻿using KOTApp.Models;
+﻿using System;
+using KOTApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace KOTApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext //Identity
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

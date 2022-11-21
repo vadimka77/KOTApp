@@ -10,10 +10,10 @@ namespace KOTApp.Models
 
         [Required]
         [Display(Name = "Company Name")]
-        public string CompanyName { get; set; }
+        public string CompanyName { get; set; } = "My Company";
 
         [Display(Name = "Company Address")]
-        public string CompanyAddress { get; set; }
+        public string CompanyAddress { get; set; } = "";
 
 
         public int CompanyOwnerId { get; set; }

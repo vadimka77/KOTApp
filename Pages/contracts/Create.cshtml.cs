@@ -30,9 +30,10 @@ namespace KOTApp.Pages.contracts
             Contract = new Contract()
             {
                 CompanyId = Org.CompanyId,
-                StartDate = Org.CurrentTFStart,
-                EmpCommPercent = 0,
+                StartDate = DateTime.Now,
+                EmpCommPercent = 0,//this % is employee-specific; will be filled after employee selected
                 COTotal = 0,
+                //set current % settings for company
                 AdvancePercent = Org.EmployeeAdvancePercent,
                 CompanyOwnerPercent = Org.CompanyOwnerPercent,
                 CompletionCertificate = "-"
@@ -42,37 +43,36 @@ namespace KOTApp.Pages.contracts
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid )
+			//Contract object created and already filled with user input from Form
+
+			if (!ModelState.IsValid )
                 return Page();
 
-            var Employee = _db.Employees.Include(c => c.Company)
-                                        .Where(c => c.EmployeeId == Contract.EmployeeId)
-                                        .FirstOrDefault();
-
-            //Contract object created and already filled with user input from Form
-            // just find for selected employee specific commission percent
-            Contract.EmpCommPercent = Employee.EmpCommPercent;
+			// just find for selected employee specific commission percent
+			var emp = _db.Employees.Find(Contract.EmployeeId);
+            
+            Contract.EmpCommPercent = emp.EmpCommPercent;
                         
             Contract.CalculateAutoFields();
 
-            var Transaction = new TxEntry()
+            var txAdvanceToEmpForNewContract = new TxEntry()
             {
                 TxDate = Contract.StartDate,
                 TxType = TxType.Advance,
                 TxAmount = Contract.AdvanceAmount,
-                Employee = Employee,
+                Employee = emp,
                 Descr = $"{Contract.AdvancePercent} Advance",
                 Contract = Contract, //<-- this must be Object contract, NOT ContractId; ContractId=0 for all new; updated after Save is done.
                 // the EF will give new real ContractId to this TxEntry object when saving it - automatically!
-                CompanyId = Org.CompanyId
+                CompanyId = Contract.CompanyId
             };
 
             _db.Contracts.Add(Contract);
-            _db.TxEntries.Add(Transaction);
+            _db.TxEntries.Add(txAdvanceToEmpForNewContract);
 
             _db.SaveChanges();
 
-            return Redirect($"./Index?oid={Org.CompanyOwnerId}&cid={Org.CompanyId}");
+            return Redirect($"Details?cid={Contract.CompanyId}&jid={Contract.ContractId}");
         }
     }
 }

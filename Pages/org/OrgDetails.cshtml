@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 }
 
-<a asp-page="./Index" 
-   asp-route-oid="@Model.Org?.CompanyOwnerId">
-   My Companies</a> > 
 <h1 class="text-primary">
 
     @Model.Org.CompanyName 
@@ -19,10 +16,6 @@
         @Model.Org.CompanyAddress
     </span>
 
-    <a asp-page="../tx/All"
-       asp-route-cid="@Model.Org.CompanyId"
-       class="btn btn-outline-info">
-    See All Transactions</a>
 
     <a asp-page="./Edit" 
        asp-route-cid="@Model.Org.CompanyId" 

@@ -19,21 +19,18 @@ public class DetailsModel : PageModel
 
     public Contract Contract { get; set; } = default!;
 
-    public async Task<IActionResult> OnGetAsync(int cid, int? jid)
+    public async Task<IActionResult> OnGetAsync(int cid, int jid)
     {
-        Org = await _db.Companies.Include(e => e.Employees) 
-                                 .Where(c => c.CompanyId == cid)
-                                 .FirstOrDefaultAsync();
+		Contract = await _db.Contracts
+            .Include(c => c.Company)
+            .Include(c=>c.Employee)
+            .Include(c => c.ChangeOrders)
+            .Include(c=> c.Txes)
+            .FirstOrDefaultAsync(c => c.ContractId == jid);
 
-        if (jid == null || _db.Contracts == null)
-            return NotFound();
+        Org = Contract.Company;
 
-        var contract = await _db.Contracts.Include(c => c.ChangeOrders)
-                                          .FirstOrDefaultAsync(c => c.ContractId == jid);
-
-        Contract = contract;
-        
-        contract.Txes = await _db.TxEntries.Where(t => t.ContractId == jid).ToListAsync();
+		//Contract.Txes = await _db.TxEntries.Where(t => t.ContractId == jid).ToListAsync();
 
         return Page();
     }
