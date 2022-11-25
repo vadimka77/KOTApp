@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
 {
@@ -18,17 +21,15 @@ namespace KOTApp.Models
 
         public int CompanyOwnerId { get; set; }
 
+       
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
+        [Precision(18, 2)]
         public decimal CompanyOwnerPercent { get; set; }
 
 
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
-        public decimal EmployeeAdvancePercent { get; set; }
-
-
-        public WorkTimeFrame PaymentTimeFrame { get; set; }
-
-
+        //enum of week/month/2week type int
+        public PayFrequency PaymentFrequency { get; set; }
+               
         [Required]
         [Display(Name ="Current Time Frame Start")]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -41,10 +42,12 @@ namespace KOTApp.Models
         [DataType(DataType.DateTime)]
         public DateTime CurrentTFEnd { get; set; }
 
-
+        public int CurrentTFPayTFId { get; set; }
         public ICollection<Contract>? Contracts { get; set; }
         public ICollection<Employee>? Employees { get; set; }
 
         public CompanyOwner? CompanyOwner { get; set; }
+        
+        public PayTimeFrame? CurrentTF { get; set; }
     }
 }

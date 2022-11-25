@@ -15,6 +15,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Company.CompanyId" />
             <input type="hidden" asp-for="Company.CompanyOwnerId" />
+            <input type="hidden" asp-for="Company.CurrentTFPayTFId" />
+
             <div class="form-group">
                 <label asp-for="Company.CompanyName" class="control-label"></label>
                 <input asp-for="Company.CompanyName" class="form-control" />
@@ -26,9 +28,9 @@
                 <span asp-validation-for="Company.CompanyAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Company.PaymentTimeFrame" class="control-label"></label>
-                <select asp-for="Company.PaymentTimeFrame" class="form-control" asp-items="Html.GetEnumSelectList<WorkTimeFrame>()"></select>
-                <span asp-validation-for="Company.PaymentTimeFrame" class="text-danger"></span>
+                <label class="control-label">Payment Frequency</label>
+                <select asp-for="Company.PaymentFrequency" class="form-control" asp-items="Html.GetEnumSelectList<PayFrequency>()"></select>
+                <span asp-validation-for="Company.PaymentFrequency" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Company.CurrentTFStart" class="control-label"></label>
@@ -45,11 +47,7 @@
                 <input asp-for="Company.CompanyOwnerPercent" class="form-control" />
                 <span asp-validation-for="Company.CompanyOwnerPercent" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Company.EmployeeAdvancePercent" class="control-label"></label>
-                <input asp-for="Company.EmployeeAdvancePercent" class="form-control" />
-                <span asp-validation-for="Company.EmployeeAdvancePercent" class="text-danger"></span>
-            </div>
+            
             <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

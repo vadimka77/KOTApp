@@ -24,7 +24,9 @@ namespace KOTApp.Pages.org
             {
                 Company = new Company()
                 {
-                    CompanyOwnerId = oid.Value
+                    CompanyOwnerId = oid.Value,
+                    PaymentFrequency =  PayFrequency.Month
+                   
                 };
                 return Page();
             }
@@ -44,6 +46,9 @@ namespace KOTApp.Pages.org
         {
             if (!ModelState.IsValid)
                 return Page();
+
+            //need to calculate current time frame in a year
+            // based on pay frequency and current datetime
 
             if (Company.CompanyId == 0)
                 _db.Add(Company);

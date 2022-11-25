@@ -20,8 +20,6 @@ namespace KOTApp.Pages.org
 
         public async Task<IActionResult> OnGetAsync(int cid)
         {
-            if (cid == null)
-                return NotFound();
 
             var company = await _db.Companies.FirstOrDefaultAsync(c => c.CompanyId == cid);
 

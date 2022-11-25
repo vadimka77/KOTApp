@@ -12,17 +12,47 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KOTApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220614154252_AddingCompanyIdToTxEntry")]
-    partial class AddingCompanyIdToTxEntry
+    [Migration("20221125053259_AppModelv1")]
+    partial class AppModelv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("KOTApp.Models.ChangeOrder", b =>
+                {
+                    b.Property<int>("ChangeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChangeId"), 1L, 1);
+
+                    b.Property<string>("ChangeOrderNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Cost")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ChangeId");
+
+                    b.HasIndex("ContractId");
+
+                    b.ToTable("ChangeOrders");
+                });
 
             modelBuilder.Entity("KOTApp.Models.Company", b =>
                 {
@@ -43,18 +73,30 @@ namespace KOTApp.Data.Migrations
                     b.Property<int>("CompanyOwnerId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("CompanyOwnerPercent")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CurrentTFEnd")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("CurrentTFPayTFId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CurrentTFStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentTimeFrame")
+                    b.Property<int>("PayTFId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentFrequency")
                         .HasColumnType("int");
 
                     b.HasKey("CompanyId");
 
                     b.HasIndex("CompanyOwnerId");
+
+                    b.HasIndex("CurrentTFPayTFId");
 
                     b.ToTable("Companies");
                 });
@@ -95,44 +137,100 @@ namespace KOTApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractId"), 1L, 1);
 
+                    b.Property<decimal>("AdvanceAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("AdvancePercent")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("COTotal")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("CloseDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ContractAmount")
-                        .HasColumnType("money");
+                    b.Property<decimal>("CompanyOwnerAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("ContractDate")
-                        .HasColumnType("datetime2");
+                    b.Property<decimal>("CompanyOwnerPercent")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CompletionCertificate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ContractAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ContractName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeID")
+                    b.Property<decimal>("Cost")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("EmpBalanceAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("EmpCommAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("EmpCommPercent")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("GrossProfit")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NETSale")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ContractId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("EmployeeID");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Contracts");
                 });
 
             modelBuilder.Entity("KOTApp.Models.Employee", b =>
                 {
-                    b.Property<int>("EmployeeID")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
+
+                    b.Property<decimal>("AdvancePercent")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("DrawAmount")
-                        .HasColumnType("money");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("EmpCommPercent")
                         .HasPrecision(10, 2)
@@ -152,36 +250,36 @@ namespace KOTApp.Data.Migrations
                     b.Property<DateTime?>("TermDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("EmployeeID");
+                    b.HasKey("EmployeeId");
 
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("KOTApp.Models.EmployeePayRate", b =>
+            modelBuilder.Entity("KOTApp.Models.EmployeePayRateHistory", b =>
                 {
-                    b.Property<int>("PayTFId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PayTFId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PayTimeFramePayTFId")
+                    b.Property<int>("PayTFId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TFCommPercent")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
-                    b.HasKey("PayTFId");
+                    b.HasKey("ID");
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("PayTimeFramePayTFId");
+                    b.HasIndex("PayTFId");
 
                     b.ToTable("EmployeePayRates");
                 });
@@ -200,6 +298,9 @@ namespace KOTApp.Data.Migrations
 
                     b.Property<DateTime>("TFEnd")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("TFPayFrequency")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TFStart")
                         .HasColumnType("datetime2");
@@ -231,7 +332,8 @@ namespace KOTApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TxAmount")
-                        .HasColumnType("money");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("TxDate")
                         .HasColumnType("datetime2");
@@ -450,6 +552,17 @@ namespace KOTApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("KOTApp.Models.ChangeOrder", b =>
+                {
+                    b.HasOne("KOTApp.Models.Contract", "Contract")
+                        .WithMany("ChangeOrders")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
+                });
+
             modelBuilder.Entity("KOTApp.Models.Company", b =>
                 {
                     b.HasOne("KOTApp.Models.CompanyOwner", "CompanyOwner")
@@ -458,7 +571,13 @@ namespace KOTApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("KOTApp.Models.PayTimeFrame", "CurrentTF")
+                        .WithMany()
+                        .HasForeignKey("CurrentTFPayTFId");
+
                     b.Navigation("CompanyOwner");
+
+                    b.Navigation("CurrentTF");
                 });
 
             modelBuilder.Entity("KOTApp.Models.Contract", b =>
@@ -471,7 +590,7 @@ namespace KOTApp.Data.Migrations
 
                     b.HasOne("KOTApp.Models.Employee", "Employee")
                         .WithMany("Contracts")
-                        .HasForeignKey("EmployeeID")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -491,7 +610,7 @@ namespace KOTApp.Data.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("KOTApp.Models.EmployeePayRate", b =>
+            modelBuilder.Entity("KOTApp.Models.EmployeePayRateHistory", b =>
                 {
                     b.HasOne("KOTApp.Models.Employee", "Employee")
                         .WithMany()
@@ -499,25 +618,25 @@ namespace KOTApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KOTApp.Models.PayTimeFrame", "PayTimeFrame")
+                    b.HasOne("KOTApp.Models.PayTimeFrame", "PayTF")
                         .WithMany()
-                        .HasForeignKey("PayTimeFramePayTFId")
+                        .HasForeignKey("PayTFId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
 
-                    b.Navigation("PayTimeFrame");
+                    b.Navigation("PayTF");
                 });
 
             modelBuilder.Entity("KOTApp.Models.TxEntry", b =>
                 {
                     b.HasOne("KOTApp.Models.Contract", "Contract")
-                        .WithMany()
+                        .WithMany("Txes")
                         .HasForeignKey("ContractId");
 
                     b.HasOne("KOTApp.Models.Employee", "Employee")
-                        .WithMany("txEntries")
+                        .WithMany("TxEntries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -590,11 +709,18 @@ namespace KOTApp.Data.Migrations
                     b.Navigation("Companies");
                 });
 
+            modelBuilder.Entity("KOTApp.Models.Contract", b =>
+                {
+                    b.Navigation("ChangeOrders");
+
+                    b.Navigation("Txes");
+                });
+
             modelBuilder.Entity("KOTApp.Models.Employee", b =>
                 {
                     b.Navigation("Contracts");
 
-                    b.Navigation("txEntries");
+                    b.Navigation("TxEntries");
                 });
 #pragma warning restore 612, 618
         }

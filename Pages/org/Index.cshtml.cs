@@ -5,6 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KOTApp.Pages.org
 {
+    //verify migrations up-to-date
+    // change money to decimal 16.2
+    // update-database
+    // change bread-crumbs remove mycompanies
+    // rename create/index/delete to newContract empInfo etc.
+    // org needs TFid for current Tf . WorkFrame is PaymentFrequncy
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;

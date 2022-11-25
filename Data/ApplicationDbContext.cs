@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KOTApp.Data
 {
-    public class ApplicationDbContext : DbContext //Identity
+    public class ApplicationDbContext : IdentityDbContext //
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -25,8 +25,13 @@ namespace KOTApp.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<TxEntry> TxEntries { get; set; }
         public DbSet<PayTimeFrame> PayTimeFrames { get; set; }
-        public DbSet<EmployeePayRate> EmployeePayRates { get; set; }
-        public DbSet<ChangeOrder>? ChangeOrders { get; set; }
+        public DbSet<EmployeePayRateHistory> EmployeePayRates { get; set; }
+        public DbSet<ChangeOrder> ChangeOrders { get; set; }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    //[Column(TypeName = "decimal(18,2)")]
+        //    modelBuilder.Entity<ChangeOrder>().Property(p => p.Cost).HasPrecision(16, 2);
+        //}
     }
 }

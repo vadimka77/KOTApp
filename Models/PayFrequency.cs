@@ -2,7 +2,7 @@
 
 namespace KOTApp.Models
 {
-    public enum WorkTimeFrame
+    public enum PayFrequency
     {
         [Display(Name = "Week")]
         Week,

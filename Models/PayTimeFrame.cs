@@ -9,6 +9,7 @@ namespace KOTApp.Models
 
         public string TFDisplayName { get; set; } = string.Empty;
 
+        public PayFrequency TFPayFrequency { get; set; }//week/month
         public DateTime TFStart { get; set; }
         public DateTime TFEnd { get; set; }
     }

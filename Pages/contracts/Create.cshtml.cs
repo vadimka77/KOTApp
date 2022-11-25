@@ -32,9 +32,9 @@ namespace KOTApp.Pages.contracts
                 CompanyId = Org.CompanyId,
                 StartDate = DateTime.Now,
                 EmpCommPercent = 0,//this % is employee-specific; will be filled after employee selected
+                AdvancePercent = 0,// employee-specific
                 COTotal = 0,
                 //set current % settings for company
-                AdvancePercent = Org.EmployeeAdvancePercent,
                 CompanyOwnerPercent = Org.CompanyOwnerPercent,
                 CompletionCertificate = "-"
             };

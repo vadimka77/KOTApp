@@ -24,14 +24,15 @@ namespace KOTApp.Pages.specialDraws
             Org = await _db.Companies
                            .Where(c => c.CompanyId == cid)
                            .FirstOrDefaultAsync();
+
             TxList = await _db.TxEntries
-                                       .Include(t => t.Employee)
-                                       .Where(t => t.TxType == TxType.SpecialDraw
-                                                || t.TxType == TxType.Adjustment
-                                                && t.CompanyId == cid
-                                                && t.TxDate > Org.CurrentTFStart
-                                                && t.TxDate < Org.CurrentTFEnd)
-                                       .ToListAsync();
+                            .Include(t => t.Employee)
+                            .Where(t => t.TxType == TxType.SpecialDraw
+                                    || t.TxType == TxType.Adjustment
+                                    && t.CompanyId == cid
+                                    && t.TxDate > Org.CurrentTFStart
+                                    && t.TxDate < Org.CurrentTFEnd)
+                            .ToListAsync();
         }
     }
 }

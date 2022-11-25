@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KOTApp.Models
@@ -12,7 +13,7 @@ namespace KOTApp.Models
         public string Descr { get; set; }
 
         [Required]
-        [Column(TypeName = "money")]
+        [Precision(18, 2)]
         [Display(Name = "Tx Amount")]
         public decimal TxAmount { get; set; }
 

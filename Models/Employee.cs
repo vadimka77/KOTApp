@@ -27,7 +27,7 @@ namespace KOTApp.Models
         public DateTime? TermDate { get; set; }
 
         [Required]
-        [Column(TypeName = "money")]
+        [Precision(18, 2)]
         [Display(Name ="Draw Amount")]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal DrawAmount { get; set; }
@@ -38,6 +38,11 @@ namespace KOTApp.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal EmpCommPercent { get; set; }
 
+        [Required]
+        [Display(Name = "Advance Percent %")]
+        [Precision(10, 2)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
+        public decimal AdvancePercent { get; set; }
         public ICollection<TxEntry>? TxEntries { get; set; }
         public ICollection<Contract>? Contracts { get; set; }
 

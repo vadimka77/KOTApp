@@ -34,14 +34,14 @@ namespace KOTApp.Pages.contracts
 
         public IActionResult OnPost()
         {
-            Contract orgJob = _db.Contracts
+            Contract? orgJob = _db.Contracts
                 .Include(e => e.Employee)
                 .Include(c => c.Company)
                 .Where(c => c.ContractId == Job.ContractId)
                 .FirstOrDefault();
                         
             Org = orgJob.Company;
-
+            
             bool IsClosedDateJustAdded = (!orgJob.CloseDate.HasValue && Job.CloseDate.HasValue);
             bool IsClosedDateChanged = (orgJob.CloseDate.HasValue 
                                         && Job.CloseDate.HasValue
