@@ -27,11 +27,13 @@ namespace KOTApp.Pages.tx
         {
             if (_db.TxEntries != null)
             {
-                Org = await _db.Companies.Include(c => c.Contracts)
-                                         .Include(c => c.Employees)
-                                         .Where(c => c.CompanyId == cid)
-                                         .FirstOrDefaultAsync();
-                Txes = await _db.TxEntries.Where(t => t.CompanyId == cid
+                Org = await _db.Companies
+                                .Include(c => c.Employees)
+                                .Where(c => c.CompanyId == cid)
+                                .FirstOrDefaultAsync();
+
+                Txes = await _db.TxEntries
+                    .Where(t => t.CompanyId == cid
                                                    && t.TxDate > Org.CurrentTFStart 
                                                    && t.TxDate < Org.CurrentTFEnd)
                                           .ToListAsync();

@@ -22,11 +22,11 @@ namespace KOTApp.Pages.tx
         {
             Org = await _db.Companies.Where(c => c.CompanyId == cid)
                                      .FirstOrDefaultAsync();
-            TrEntries = await _db.TxEntries.Include(e => e.Employee)
-                                           .Include(c => c.Contract)
-                                           .Where(t => t.TxType != TxType.Adjustment)
-                                           .OrderByDescending(d => d.TxDate)
-                                           .ToListAsync();
+            TrEntries = await _db.TxEntries
+                    .Include(e => e.Employee)
+                    .Where(t => t.CompanyId == cid)
+                    .OrderByDescending(d => d.TxDate)
+                    .ToListAsync();
         }
     }
 }

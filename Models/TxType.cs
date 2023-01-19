@@ -1,18 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace KOTApp.Models
 {
     public enum TxType 
     {
-        Draw,
+		[EnumMember(Value = "Draw")]
+		Draw,
 
-        Commission,
+		[EnumMember(Value = "Commission")]
+		Commission,
 
-        Adjustment,
+		[EnumMember(Value = "Adjustment")]
+		Adjustment,
 
-        Advance,
+		[EnumMember(Value = "Advance")]
+		Advance,
 
         [Display(Name = "Special Draw")]
-        SpecialDraw,
+		[EnumMember(Value = "Special Draw")]
+		SpecialDraw,
     }
 }

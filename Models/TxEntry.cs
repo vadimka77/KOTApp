@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace KOTApp.Models
 {
@@ -17,6 +17,7 @@ namespace KOTApp.Models
         [Display(Name = "Tx Amount")]
         public decimal TxAmount { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public TxType TxType { get; set; }
 
         [Required]

@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "Transactions";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/lib/datatables.net-bs5/datatables.bootstrap5.css" />
+}
 
 <h4>  
     <a asp-page="../Org/Index" 
@@ -16,21 +19,22 @@
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
       @Model.Org.CompanyName</a> 
-    > Transactions 
+    > Transactions [<a href="/tx/TxList?cid=1">x</a>] 
 </h4>
 
 <a asp-page="Create" 
    asp-route-cid="@Model.Org.CompanyId" 
    class="btn btn-outline-primary">
 Add Transaction</a>
-<table class="table">
+
+<table id="tblTxList" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Transaction Date</th>
-            <th>Transaction Type</th>
+            <th>Date</th>
             <th>Amount</th>
             <th>Employee</th>
-            <th>Description</th>
+            <th>Type</th>
+            <th>Desription</th>
         </tr>
     </thead>
     <tbody>
@@ -45,3 +49,14 @@ Add Transaction</a>
         }
     </tbody>
 </table>
+@section Scripts {
+    <script src="~/lib/datatables.net/jquery.datatables.js"></script>
+    <script src="~/lib/datatables.net-bs5/datatables.bootstrap5.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('#tblTxList').DataTable();
+        });
+    </script>
+
+}

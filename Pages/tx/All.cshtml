@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "All";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/lib/datatables.net-bs5/datatables.bootstrap5.css" />
+}
 
 <h4>  
     <a asp-page="../Org/Index" 
@@ -19,7 +22,7 @@
     > All Transactions 
 </h4>
 
-<table class="table">
+<table id="tblList" class="table">
     <thead>
         <tr>
             <th>Date</th>
@@ -34,10 +37,21 @@
             <tr>
                 <td>@item.TxDate</td>
                 <td>@item.TxAmount</td>
-                <td>@item.Employee</td>
+                <td>@item.Employee.FullName</td>
                 <td>@item.TxType</td>
                 <td>@item.Descr</td>
             </tr>
         }
     </tbody>
 </table>
+@section Scripts {
+        <script src="~/lib/datatables.net/jquery.datatables.js"></script>
+        <script src="~/lib/datatables.net-bs5/datatables.bootstrap5.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tblList').DataTable();
+            });
+        </script>
+
+}

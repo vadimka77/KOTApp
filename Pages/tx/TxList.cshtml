@@ -1,0 +1,152 @@
+﻿@page 
+@model KOTApp.Pages.tx.TxListModel
+
+@{
+    ViewData["Title"] = "TxList";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/lib/datatables.net-bs5/datatables.bootstrap5.css" />
+	<style>
+		div.dataTables_processing > div:last-child {
+			width: 80px;
+			height: 80px;
+		}
+	</style>
+}
+<h4>  
+    <a asp-page="../Org/Index" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       class="link">
+    My Companies</a> 
+    >
+    <a asp-page="../Org/OrgDetails" 
+       asp-route-oid="@Model.Org.CompanyOwnerId"
+       asp-route-cid="@Model.Org.CompanyId" 
+       class="link">
+      @Model.Org.CompanyName</a> 
+    > All Transactions 
+</h4>
+
+<h3>TxList</h3>
+<div class="row">
+	Filters Employee:
+	<select id="ddlEmp" class="form-control col-4" asp-items="@Model.EmpSelectList"><option value="0">-any-</option></select>
+</div>
+
+<table id="tblTxList" class="display table table-striped table-bordered " style="width:100%;">
+    <thead>
+        <tr>
+			<th>TxId</th>
+            <th>Date</th>
+            <th>Amount</th>
+			<th>Type</th>
+            <th>Employee</th>
+            <th>Desription</th>
+			<th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="~/lib/datatables.net/jquery.datatables.js"></script>
+    <script src="~/lib/datatables.net-bs5/datatables.bootstrap5.js"></script>
+    
+    <script type="text/javascript">
+
+		var cid=@Model.Org.CompanyId;
+
+		var dtTableID = '#tblTxList';
+		var dtList;
+		var dtData;
+
+        $(document).ready(function () {
+          
+            List_LoadDataTable();
+		});
+
+		function List_LoadDataTable() {
+
+			dtList = $(dtTableID).DataTable({
+				"processing": true,
+				"oLanguage": { sProcessing: "<div class='ajax-loader'><img src='../images/LoaderSpinAndPulsate.gif'></div>" },
+				"paging": true,
+				"ordering": true,
+				"info": true,
+				"filter": true
+				, "columnDefs": [
+					{
+						"targets": [0],
+						"visible": false,
+						"searchable": true
+					}
+				]
+				, "columns": [
+					{ "data": "TxId", "name": "TxId", "autoWidth": true },
+
+					{ "data": "TxDate", "name": "TxDate", "autoWidth": true },
+					{ "data": "TxAmount", "name": "TxAmount", "autoWidth": true },
+					{ "data": "TxType", "name": "TxType", "autoWidth": true },
+
+					{ "data": "Employee.FullName", "name": "EmpName", "autoWidth": true },
+
+					{ "data": "Descr", "name": "Descr", "autoWidth": true },
+					
+					{
+						"data": null, "name": "btns", "autoWidth": true,
+						"render": function (data, type, row, meta) {
+
+							return `<button type='button' class='btn btn-primary' onclick=dtList_onEdit(${row.TxId}); >Edit</button>
+											<button type='button' class='btn btn-danger' onclick=dtList_onDelete(${row.TxId}); >Delete</button>`;
+						}
+					}
+					
+				]
+				, "ajax": {
+					"dataType": "json", type: "GET", contentType: "application/json; charset=utf-8",
+					"url": "TxList?handler=LoadList&cid=" + cid,
+					"data": {},
+					"dataSrc": function (resp) {
+						dtData = resp;//$.parseJSON(resp);
+						//console.log(dtData);
+						//json.draw = json.d.draw;   //json.recordsTotal = json.d.recordsTotal;//json.recordsFiltered = json.d.recordsFiltered; //json.data = json.d.data;
+						return dtData;
+					}
+				}
+				, "initComplete": function () {
+					console.log('list-init');
+
+					
+					$("#ddlEmp").on('change', function () {
+						var col = $(dtTableID).dataTable().api().column(4);// superid
+						var val = $.fn.dataTable.util.escapeRegex($(this).val());
+						//console.log('ftr->|' + val + '|');
+						col.search(val ? '^' + val + '$' : '', true, false).draw();
+					});
+					
+
+				}
+				, "createdRow": function (row, data, index) {
+					//data[5] //  $('td', row).eq(5).addClass('highlight');  $(row).addClass('myRow');
+					//if (data.YrTotal == 0) { $(row).addClass('cme0'); }
+				}
+				/*"responsive": { details: false}*/
+			});
+
+		}
+
+		function dtList_onEdit(id)
+		{
+			alert('editing is blocked');
+			return false;
+		}
+		function dtList_onDelete(id) {
+			alert('Sorry, Can\'t Delete Tx!');
+			return false;
+		}
+		
+    </script>
+   
+}

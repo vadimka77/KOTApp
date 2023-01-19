@@ -5,6 +5,14 @@
     {
       "library": "font-awesome@6.1.1",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "datatables.net@2.1.1",
+      "destination": "wwwroot/datatables.net/"
+    },
+    {
+      "library": "datatables.net-bs5@1.13.1",
+      "destination": "wwwroot/datatables.net-bs5/"
     }
   ]
 }
