@@ -18,10 +18,11 @@ namespace KOTApp.Pages.org
         [BindProperty]
         public Company Company { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? oid, int? cid)
+        public async Task<IActionResult> OnGetAsync( int? cid)
         {
             if (cid == null)
             {
+                var oid = HttpContext.Session.GetInt32("oid");
                 Company = new Company()
                 {
                     CompanyOwnerId = oid.Value,
@@ -52,7 +53,6 @@ namespace KOTApp.Pages.org
 
             if (Company.CompanyId == 0)
                 _db.Add(Company);
-
             else
                 _db.Attach(Company).State = EntityState.Modified;
 

@@ -5,14 +5,8 @@
     ViewData["Title"] = "Employee Info";
 }
 
-<h4>  
-    <a asp-page="../Org/Index" 
-       asp-route-oid="@Model.Org.CompanyOwnerId"
-       class="link">
-    My Companies</a> 
-    >
+<h4> 
     <a asp-page="../Org/OrgDetails" 
-       asp-route-oid="@Model.Org.CompanyOwnerId"
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
       @Model.Org.CompanyName</a> 
@@ -66,8 +60,7 @@
 </div>
 
 <a class="btn btn-info mt-2"
-   href='@("/emp/index?&cid=" + Request.Query["cid"])'>
-   back to list</a>
+   href='@("/emp/index?cid=" + Request.Query["cid"])'> back to list</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

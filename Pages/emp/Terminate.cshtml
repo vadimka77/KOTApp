@@ -5,19 +5,14 @@
     ViewData["Title"] = "Terminate Employee";
 }
 
-<h4>  
-    <a asp-page="../Org/Index" 
-       asp-route-oid="@Model.Org.CompanyOwnerId"
-       class="link">
-    My Companies</a> 
-    >
+<h4> 
     <a asp-page="../Org/OrgDetails" 
        asp-route-oid="@Model.Org.CompanyOwnerId"
        asp-route-cid="@Model.Org.CompanyId" 
        class="link">
     @Model.Org.CompanyName</a> 
     >
-    <a href='@("/emp/index?&cid=" + Model.Employee.CompanyId)'>Employees</a>
+    <a href='@("/emp/index?cid=" + Model.Employee.CompanyId)'>Employees</a>
     > Terminate Employee
 </h4>
 
@@ -52,7 +47,7 @@
         <button type="submit" class="btn btn-danger">Terminate</button>
 
         <a asp-page="./Index"
-           asp-route-oid="@Model.Employee.Company.CompanyOwnerId"
+          
            asp-route-cid="@Model.Employee.CompanyId"
            class="btn btn-info">
         Back to List</a>

@@ -26,7 +26,8 @@ namespace KOTApp.Pages.org
 
         public void OnGet(int oid)
         {
-            
+            //todo: after login, unique owner id saved to session
+            //param oid need to get out of session
             Owner = _db.CompanyOwners
                 .Include(c => c.Companies)
                 .Where(o => o.CompanyOwnerId == oid)

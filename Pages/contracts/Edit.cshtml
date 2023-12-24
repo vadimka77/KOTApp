@@ -5,12 +5,7 @@
     ViewData["Title"] = "Update";
 }
 
-<h4> 
-    <a asp-page="../Org/Index" 
-       asp-route-oid="@Model.Org.CompanyOwnerId" 
-       class="link">
-    My Companies</a> 
-     >
+<h4>    
     <a asp-page="../Org/OrgDetails"
        asp-route-oid="@Model.Org.CompanyOwnerId"
        asp-route-cid="@Model.Org.CompanyId"

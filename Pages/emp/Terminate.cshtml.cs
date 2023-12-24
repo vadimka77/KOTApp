@@ -34,10 +34,10 @@ namespace KOTApp.Pages.emp
         public async Task<IActionResult> OnPostAsync(int eid)
         {
             var employee = await _db.Employees.FindAsync(eid);
+            employee.TermDate = DateTime.Now;
+            //Employee = employee;
 
-            Employee = employee;
-
-            _db.Employees.Remove(Employee);
+           // _db.Employees.Remove(Employee);
 
             await _db.SaveChangesAsync();
 

@@ -23,7 +23,7 @@ Add New Contract</a>
 <table class="table">
     <thead>
         <tr>
-            <th>Company</th>
+           
             <th>Contract Name</th>
             <th>Contract Date</th>
             <th>Contract Amount</th>
@@ -34,7 +34,7 @@ Add New Contract</a>
     <tbody>
         @foreach (var item in Model.ContractList) {
             <tr>
-                <td>@item.Company.CompanyName</td>
+               
                 <td>@item.ContractName</td>
                 <td>@item.StartDate.ToShortDateString()</td>
                 <td>@item.ContractAmount</td>

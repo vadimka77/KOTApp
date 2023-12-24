@@ -20,8 +20,8 @@ namespace KOTApp.Pages.org
 
         public async Task<IActionResult> OnGetAsync(int cid)
         {
-
-            var company = await _db.Companies.FirstOrDefaultAsync(c => c.CompanyId == cid);
+            var oid = HttpContext.Session.GetInt32("oid");
+            var company = await _db.Companies.FirstOrDefaultAsync(c => c.CompanyId == cid && c.CompanyOwnerId==oid);
 
             if (company == null)
                 return NotFound();

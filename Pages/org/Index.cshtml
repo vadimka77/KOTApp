@@ -6,9 +6,8 @@
 }
 <h3 class="text-primary">Welcome back, @Model.Owner.OwnerName</h3>
 <h1>My Companies
-    <a asp-page="Edit" 
-    asp-route-oid="@Request.Query["oid"]" 
-    class="btn  btn-sm btn-outline-primary float-md-end">
+    <a asp-page="Edit"  asp-route-cid="0" 
+        class="btn  btn-sm btn-outline-primary float-md-end">
     Add Company</a>
 </h1>
 <form method="get" style="display:none;">
@@ -34,7 +33,7 @@
                     @item.CompanyAddress
                     <div class="mt-2">
                         <a asp-page="OrgDetails" 
-                            asp-route-oid="@item.CompanyOwnerId"
+                           
                             asp-route-cid="@item.CompanyId" 
                             class="btn btn-primary stretched-link">
                         Manage</a>

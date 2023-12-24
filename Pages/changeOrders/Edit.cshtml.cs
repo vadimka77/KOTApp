@@ -25,10 +25,7 @@ namespace KOTApp.Pages.costChanges
         {
             Org = await _db.Companies
                            .Where(c => c.CompanyId == cid)
-                           .Include(
-                                    j => j.Contracts
-                                    .Where(j => j.ContractId == jid)
-                                    )
+                           .Include(j => j.Contracts.Where(j => j.ContractId == jid) )
                            .FirstOrDefaultAsync();
 
             if (chid == null || _db.ChangeOrders == null)

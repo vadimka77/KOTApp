@@ -20,9 +20,10 @@ namespace KOTApp.Pages.org.emp
 
         public void OnGet(int cid)
         {
+            var oid = HttpContext.Session.GetInt32("oid");
             Org = _db.Companies
                      .Include(e => e.Employees)
-                     .Where(c => c.CompanyId == cid)
+                     .Where(c => c.CompanyId == cid && c.CompanyOwnerId==oid)
                      .FirstOrDefault();
 
             Employees = Org.Employees;
@@ -30,9 +31,11 @@ namespace KOTApp.Pages.org.emp
 
         public IActionResult OnPostDraw(int cid)
         {
+            var oid = HttpContext.Session.GetInt32("oid");
+
             Org = _db.Companies
                      .Include(e => e.Employees)
-                     .Where(c => c.CompanyId == cid)
+                     .Where(c => c.CompanyId == cid && c.CompanyOwnerId==oid)
                      .FirstOrDefault();
 
             Employees = Org.Employees

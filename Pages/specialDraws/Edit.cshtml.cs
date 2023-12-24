@@ -19,20 +19,20 @@ namespace KOTApp.Pages.specialDraws
         [BindProperty]
         public TxEntry TrEntry { get; set; } = default!;
 
-        public Company Org;
+        //public Company Org;
 
         public SelectList EmpSelectList;
 
         public async Task<IActionResult> OnGetAsync(int? cid, int? tid, TxType type)
         {
-            Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
-            List<Employee> EmpList = _db.Employees.Where(e => e.CompanyId == cid).ToList();
+            //Org = await _db.Companies.Where(c => c.CompanyId == cid).FirstOrDefaultAsync();
+            List<Employee> EmpList = await _db.Employees.Where(e => e.CompanyId == cid).ToListAsync();
             EmpSelectList = new SelectList(EmpList, "EmployeeId", "FullName");
 
             if (tid == null)
                 TrEntry = new TxEntry()
                 {
-                    CompanyId = Org.CompanyId,
+                    CompanyId = cid??0,
                     TxDate = DateTime.Now,
                     TxType = type,
                     TxAmount = 0,
